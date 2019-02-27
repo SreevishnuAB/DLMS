@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h1 DLMS
-  p Duty Leave Management System
+  form(action="/login",method="POST",id="login")
+    input(type="text",id="user")
+    br
+    

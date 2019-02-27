@@ -3,10 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index',{title: 'DLMS',auth: false});
 });
-
-router.get('/register',(req,res,next)=>{
-  res.send("Registration");
+router.post('/login',(req,res,next)=>{
+  
 });
 module.exports = router;
