@@ -16,11 +16,24 @@ h1 {
 }
 nav{
   width:100vw;
-  background-color: rgba(38, 80, 119, 1);
+  background-color: #ac3b61;
 }
 .navlogo{
   float:left;
 }
 .navbar-nav{
   float:right;
+}
+.form{
+  margin:10vh;
+  background-color: #116466;
+  height:40vh;
+  width:40vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formelement{
+  margin-top:2.5vh;
+  width:30vw;
 }

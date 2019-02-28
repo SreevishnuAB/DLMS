@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  form(action="/login",method="POST",id="login")
-    input(type="text",id="user")
-    br
-    
+  div(class="form")
+    form(action="/login",method="POST",id="login")
+      input(class="formelement",type="text",id="user",placeholder="Username")
+      br
+      input(class="formelement",type="password",id="password",placeholder="Password")
