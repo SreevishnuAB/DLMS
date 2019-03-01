@@ -1,7 +1,7 @@
 body {
   font-family: 'Titillium Web', sans-serif;
   font-size: 20px;
-  background-color: #1f2833;
+  background-color:rgba(27, 27, 27, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,8 +15,9 @@ h1 {
   font-weight: 700;
 }
 nav{
+  margin-top:3vh;
   width:100vw;
-  background-color: #ac3b61;
+  background-color:rgba(30, 22, 90, 1);
 }
 .navlogo{
   float:left;
@@ -26,14 +27,19 @@ nav{
 }
 .form{
   margin:10vh;
-  background-color: #116466;
-  height:40vh;
-  width:40vw;
+  background-color: rgba(71,73,148);
+  height:30vh;
+  width:30vw;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .formelement{
   margin-top:2.5vh;
-  width:30vw;
+  width:25vw;
+}
+.btn{
+  margin-top: 3vh;
+  background-color: rgba(170, 183, 230, 1);
+  padding: 10px;
 }
