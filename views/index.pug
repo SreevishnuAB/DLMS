@@ -3,8 +3,8 @@ extends layout
 block content
   div(class="form")
     form(action="/login",method="POST",id="login")
-      input(class="formelement",type="text",id="user",placeholder="Username")
+      input(class="formelement",type="text",name="user",placeholder="Username")
       br
-      input(class="formelement",type="password",id="password",placeholder="Password")
+      input(class="formelement",type="password",name="password",placeholder="Password")
       br
       input(type="submit", class="btn")
