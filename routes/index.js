@@ -14,7 +14,15 @@ var sequelize = new Sequelize('postgres://qrlwmsdtnnltzr:72fd6b12362abaca65b66c6
     ssl: true
   }
 });
-const Models = require('../models/models');
+
+const student = sequelize.define('student',{
+  stud_name: Sequelize.STRING,
+  stud_id: Sequelize.STRING(14),
+  password: Sequelize.STRING,
+  batch: Sequelize.STRING,
+  email: Sequelize.STRING
+});
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,7 +33,18 @@ router.post('/login',(req,res,next)=>{
   sequelize
     .authenticate()
     .then(()=>{
-      console.log("Connected");
+//      console.log("Connected");
+      sequelize.query("select password from students where stud_id='"+req.body.user+"'",{type: sequelize.QueryTypes.SELECT})
+        .then(users =>{
+//          console.log(users[0]['password']);
+//          console.log(req.body.password);
+          if(users[0]['password'] == req.body.password){
+            //TODO setup session
+            res.redirect('../users/student');
+          }
+          else
+            res.send('alert("Invalid credentials")');
+        });
     }
   )
   .catch(err=>{

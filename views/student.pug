@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  form(action="",id="lreq",class="form-inline",name="leave")
+    label(for="from") From:
+    input(type="date",name="from")
+    br
+    label(for="to") To:
+    input(type="date",name="to")
+    br
+    label(for="event") Event:
+    input(type="text",placeholder="event",name="event")
+    br
+  input(type="submit",form="leave")
