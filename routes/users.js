@@ -5,6 +5,7 @@ var router = express.Router();
 router.get('/student', function(req, res, next) {
 //  res.send('respond with a resource');
 res.render('student',{auth:true});
+console.log(req.session.user);
 });
 
 module.exports = router;
