@@ -38,7 +38,7 @@ router.post('/login',(req,res,next)=>{
         .then(users =>{
 //          console.log(users[0]['password']);
 //          console.log(req.body.password);
-          if(users[0]['password'] == req.body.password){
+          if(users[0].password == req.body.password){
             //TODO setup session
             res.redirect('../users/student');
           }

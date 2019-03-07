@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+var redis = require('redis').createClient();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,6 +20,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    store: new RedisStore({
+      url: 'redis-15452.c2.eu-west-1-3.ec2.cloud.redislabs.com',
+      port: 15452,
+      pass: 'N3S7qYfjoCKtZtnPahaxV4dF4EgloGGr'
+    }),
+    secret:'lemon meringue pie',
+  }
+));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
