@@ -6,7 +6,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var redis = require('redis').createClient('redis://rediscloud:N3S7qYfjoCKtZtnPahaxV4dF4EgloGGr@redis-15452.c2.eu-west-1-3.ec2.cloud.redislabs.com:15452');
-
+var genuuid = require('uuid/v4');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -29,7 +29,11 @@ app.use(session({
     }),
     secret:'lemon meringue pie',
     resave:false,
-    saveUninitialized:true
+    saveUninitialized:false,
+    genid: function(req){
+      return genuuid();
+    },
+    unset:'destroy'
   }
 ));
 
