@@ -12,4 +12,9 @@ router.get('/student', function(req, res, next) {
     }
 });
 
+router.get('/logout',(req,res)=>{
+    req.session.destroy();
+    res.jsonp({success:true});
+});
+
 module.exports = router;

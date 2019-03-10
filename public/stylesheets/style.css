@@ -29,7 +29,7 @@ nav{
   border-radius: 30px;
   margin:10vh;
   background-color: #328cc1;
-  height:30vh;
+  height:35vh;
   width:30vw;
   display: flex;
   align-items: center;
@@ -46,4 +46,6 @@ nav{
   margin-top: 3vh;
   background-color: #0b3c5d;
   padding: 10px;
+}
+#logout{
 }

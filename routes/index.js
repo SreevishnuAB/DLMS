@@ -28,6 +28,7 @@ const student = sequelize.define('student',{
 router.get('/', function(req, res, next) {
   res.render('index',{title: 'DLMS',auth: false});
 });
+
 router.post('/login',(req,res,next)=>{
 //  res.send(req.body.user);
   sequelize
@@ -51,6 +52,15 @@ router.post('/login',(req,res,next)=>{
   .catch(err=>{
     console.log(err);
   });
+});
+
+router.get('/register',(req,res)=>{
+  res.render('register');
+});
+
+router.post('/register',(req,res)=>{
+  console.log(req.body.username);
+  res.jsonp({success:true});
 });
 
 module.exports = router;
