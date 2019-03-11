@@ -25,14 +25,20 @@ $(document).ready(function(){
             type:'POST',
             url: '../register',
             cache: false,
-            async: true,
-            data: {username:$("#user").val()},
+            async:true,
+            data: {
+              username: $("#user").val(),
+              id: $("#id").val(),
+              email: $("#email").val(),
+              password: $("#password").val(),
+              designation: $("#designation").val()
+            },
             success:()=>{
                 alert('Account created');
             },
-            error: ()=>{
-                alert('Error');
+            error: (err)=>{
+                alert(err);
             }
         });
-    })
+    });
 });

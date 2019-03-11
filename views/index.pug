@@ -3,9 +3,14 @@ extends layout
 block content
   div(class="form")
     form(action="/login",method="POST",id="login")
-      input(class="formelement",type="text",name="user",placeholder="Username")
+      input(class="formelement",type="text",name="user",placeholder="  Username")
       br
-      input(class="formelement",type="password",name="password",placeholder="Password")
+      input(class="formelement",type="password",name="password",placeholder="  Password")
+      br
+      select(id="designation", class="formelement",name="designation")
+        option(value="", selected,disabled) &nbsp;Designation
+        option(value="students") Student
+        option(value="faculties") Faculty
       br
       input(type="submit", class="btn")
   p
