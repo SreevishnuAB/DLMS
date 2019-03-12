@@ -54,5 +54,7 @@ nav{
   background-color:#d0e1f9;
   color: #0b3c5d;
 }
-#logout{
+.logout{
+  background-color: #00ff7f;
+  color: #000000;
 }

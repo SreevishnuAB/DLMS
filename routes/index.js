@@ -37,17 +37,20 @@ router.post('/login',(req,res,next)=>{
     .authenticate()
     .then(()=>{
 //      console.log("Connected");
-      sequelize.query(`select password from ${req.body.designation} where stud_id='${req.body.user}'`,{type: sequelize.QueryTypes.SELECT})
+      sequelize.query(`select password from ${req.body.designation} where id='${req.body.user}'`,{type: sequelize.QueryTypes.SELECT})
         .then(users =>{
 //          console.log(users[0]['password']);
 //          console.log(req.body.password);
 //          if(users[0].password == req.body.password){
 //            req.session.user = req.body.user;
 //            req.session.user = "The Mask";
-          bcrypt.compare(req.body.password,users[0].password,function(err,res){
-            if(res==true){
-            res.redirect('../users/student');
-          }
+          bcrypt.compare(req.body.password,users[0].password,function(err,result){
+            console.log(req.body.password);
+            console.log(result);
+            if(result==true){
+              req.session.user = req.body.user;
+              res.redirect('../users/student');
+            }
 //          else
 //            res.send('alert("Invalid credentials")');
           });
@@ -71,8 +74,9 @@ router.post('/register',async (req,res)=>{
 //  console.log(req.body.designation);
 //  res.jsonp({success:true});
   await bcrypt.hash(req.body.password,10,function(err,hash){
-    console.log(hash);
-    sequelize.query(`insert into ${req.body.designation} values('${req.body.username}','${req.body.id}','${req.body.email}','${hash}')`,{type:Sequelize.QueryTypes.INSERT});
+//    console.log(hash);
+    sequelize.query(`insert into ${req.body.designation} values('${req.body.username}','${req.body.id}','${hash}','${req.body.email}')`,{type:Sequelize.QueryTypes.INSERT});
+    res.jsonp({success:true});
   });
 });
 

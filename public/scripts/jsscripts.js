@@ -34,11 +34,24 @@ $(document).ready(function(){
               designation: $("#designation").val()
             },
             success:()=>{
-                alert('Account created');
+                alert("Account created");
+                $("#designation").val();
+                window.location = '../';
             },
             error: (err)=>{
                 alert(err);
             }
+        });
+    });
+
+    $("#lreq").submit(function(){
+        event.preventDefault();
+    });
+
+    $('#req').click(function(){
+        $.ajax({
+            type: 'POST',
+            url: ''
         });
     });
 });

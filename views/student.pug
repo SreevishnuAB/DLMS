@@ -1,14 +1,29 @@
 extends layout
 
 block content
-  form(action="",id="lreq",class="form-inline",name="leave")
+  form(action="",id="lreq",name="leave")
+    label(for="id") ID:
+    input(type="text",id="id",placeholder="Enter ID")
+    br
+    label(for="prog") Programme:
+    input(type="text",placeholder="Enter Programme",id="prog")
+    br
+    label(for="year") Year of Joining:
+    input(type="text",placeholder="Enter Year of Joining",id="yoj")
+    br
+    label(for="batch") Batch:
+    input(type="text",placeholder="Enter Batch",id="batch")
+    br
+    label(for="sem") Semester:
+    input(type="text",placeholder="Enter Semester",id="sem")
+    br
     label(for="from") From:
-    input(type="date",name="from")
+    input(type="date",id="from")
     br
     label(for="to") To:
-    input(type="date",name="to")
+    input(type="date",id="to")
     br
     label(for="event") Event:
-    input(type="text",placeholder="event",name="event")
+    input(type="text",placeholder="Enter Event",id="event")
     br
-  input(type="submit",form="leave")
+  input(type="submit",form="leave",id="req")
