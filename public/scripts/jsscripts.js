@@ -51,7 +51,25 @@ $(document).ready(function(){
     $('#req').click(function(){
         $.ajax({
             type: 'POST',
-            url: ''
+            url: '../users/student',
+            cache:false,
+            async:true,
+            data:{
+                id: $('#id').val(),
+                prog: $('#prog').val(),
+                yoj: $('#yoj').val(),
+                batch: $('#batch').val(),
+                sem: $('#sem').val(),
+                event: $('#event').val(),
+                from: $('#from').val(),
+                to: $('#to').val(),
+            },
+            success: ()=>{
+                alert("Leave requested");
+            },
+            error:()=>{
+                alert('Error');
+            }
         });
     });
 });
