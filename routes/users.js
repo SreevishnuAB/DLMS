@@ -16,8 +16,7 @@ router.get('/student', function(req, res, next) {
     }
     else{
         var user = req.session.user;
-        var d=new Date();
-        res.render('student',{auth:true,title:`${user.toUpperCase()} - DLMS`,date:`${d.getFullYear()}/${d.getMonth()}/${d.getDay()}`});
+        res.render('student',{auth:true,title:`${user.toUpperCase()} - DLMS`});
         console.log(req.session.user);
     }
 });
@@ -29,6 +28,14 @@ router.post('/student',async (req,res)=>{
             res.jsonp({success:true});      
     });
 //    res.jsonp({success:true});
+});
+
+router.get('/student/leaves',(req,res)=>{
+  var user = req.session.user;
+  sequelize.query(`select * from dutyleaves where id='${req.session.user}'`,{type: sequelize.QueryTypes.SELECT})
+    .then(leaves=>{
+      res.render('studleaves',{auth:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
+    });
 });
 
 router.get('/logout',(req,res)=>{

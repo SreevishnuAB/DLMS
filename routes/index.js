@@ -49,6 +49,7 @@ router.post('/login',(req,res,next)=>{
             console.log(result);
             if(result==true){
               req.session.user = req.body.user;
+              req.session.des = req.body.designation;
               res.redirect('../users/student');
             }
 //          else

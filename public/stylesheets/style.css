@@ -54,7 +54,22 @@ nav{
   background-color:#d0e1f9;
   color: #0b3c5d;
 }
-.logout{
-  background-color: #00ff7f;
-  color: #000000;
+.table{
+  background-color: #d0e1f9;
+}
+.table th{
+  background-color: #000000;
+  color:#d0e1f9;
+}
+#logout{
+  background-color: #0b3c5d;
+  color: #d0e1f9;
+  border:none;
+  transition-duration: 0.5s;
+  border-radius: 30px;
+}
+#logout:hover{
+  background-color: #d0e1f9;
+  color: #0b3c5d;
+  transition-duration: 0.5s;
 }

@@ -4,11 +4,11 @@ $(document).ready(function(){
     $('#logout').click(function(){
         $.ajax({
             type: 'GET',
-            url: '../users/logout',
+            url: '/users/logout',
             cache: 'false',
             success: function(){
                 alert("Logged out successfully");
-                window.location = '../'
+                window.location = '/'
             },
             error: function(){
                 alert("error");

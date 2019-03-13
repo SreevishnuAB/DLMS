@@ -3,7 +3,7 @@ extends layout
 block content
   div(class="form")
     form(action="/register",method="POST",id="register")
-      select(id="designation", class="formelement")
+      select(id="designation", class="formelement",required)
         option(value="", selected, disabled) &nbsp;Designation
         option(value="students") Student
         option(value="faculties") Faculty
