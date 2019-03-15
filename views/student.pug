@@ -1,29 +1,47 @@
 extends layout
 
 block content
-  form(action="",id="lreq",name="leave")
-    label(for="id") ID:
-    input(type="text",id="id",placeholder="Enter ID",required)
-    br
-    label(for="prog") Programme:
-    input(type="text",placeholder="Enter Programme",id="prog",required)
-    br
-    label(for="year") Year of Joining:
-    input(type="text",placeholder="Enter Year of Joining",id="yoj",required)
-    br
-    label(for="batch") Batch:
-    input(type="text",placeholder="Enter Batch",id="batch",required)
-    br
-    label(for="sem") Semester:
-    input(type="text",placeholder="Enter Semester",id="sem",required)
-    br
-    label(for="from") From:
-    input(type="date",value=date,id="from",required)
-    br
-    label(for="to") To:
-    input(type="date",value=date,id="to",required)
-    br
-    label(for="event") Event:
-    input(type="text",placeholder="Enter Event",id="event",required)
-    br
-  input(type="submit",form="leave",id="req")
+  div(class="leaveform")
+    form(action="",id="lreq",name="leave")
+      table(class="")
+        tr
+          td
+            label(for="id") ID:
+          td
+            input(type="text",id="id",placeholder="Enter ID",class="lformelement",required)
+        tr
+          td
+            label(for="prog") Programme:
+          td
+            input(type="text",placeholder="Enter Programme",id="prog",class="lformelement",required)
+        tr
+          td
+            label(for="year") Year of Joining:
+          td
+            input(type="text",placeholder="Enter Year of Joining",id="yoj",class="lformelement",required)
+        tr
+          td
+            label(for="batch") Batch:
+          td
+            input(type="text",placeholder="Enter Batch",id="batch",class="lformelement",required)
+        tr
+          td
+            label(for="sem") Semester:
+          td
+            input(type="text",placeholder="Enter Semester",id="sem",class="lformelement",required)
+        tr
+          td
+            label(for="from") From:
+          td
+            input(type="date",value=date,id="from",class="lformelement",required)
+        tr
+          td
+            label(for="to") To:
+          td
+            input(type="date",value=date,id="to",class="lformelement",required)
+        tr
+          td
+            label(for="event") Event:
+          td
+            input(type="text",placeholder="Enter Event",id="event",class="lformelement",required)
+    input(type="submit",form="leave",id="req",class="btn")
