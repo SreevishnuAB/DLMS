@@ -50,11 +50,17 @@ router.post('/login',(req,res,next)=>{
             if(result==true){
               req.session.user = req.body.user;
               req.session.des = req.body.designation;
-              res.redirect('../users/student');
+              if(req.body.designation == 'student')
+                res.redirect('../users/student');
+              else
+                res.redirect('../users/faculty');
             }
-//          else
-//            res.send('alert("Invalid credentials")');
+          else
+            res.send("Invalid credentials");
           });
+        })
+        .catch(err=>{
+          res.send(`Something went Wrong : ${err}`);
         });
     }
   )

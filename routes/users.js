@@ -30,12 +30,17 @@ router.post('/student',async (req,res)=>{
 //    res.jsonp({success:true});
 });
 
-router.get('/student/leaves',(req,res)=>{
+router.get('/student/leaves',async (req,res)=>{
   var user = req.session.user;
-  sequelize.query(`select * from dutyleaves where id='${req.session.user}'`,{type: sequelize.QueryTypes.SELECT})
+  await sequelize.query(`select * from dutyleaves where id='${req.session.user}'`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
+        console.log(leaves.length);
       res.render('studleaves',{auth:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
     });
+});
+
+router.post('/faculty',(req,res)=>{
+    sequelize.query()
 });
 
 router.get('/logout',(req,res)=>{

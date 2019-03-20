@@ -1,5 +1,5 @@
 body {
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Hind Siliguri', sans-serif;
   font-size: 20px;
   background-color:#233237;
   display: flex;
@@ -11,7 +11,7 @@ body {
   width: 100vw;
 }
 h1 {
-  font-family: 'Titillium Web',sans-serif;
+  font-family: 'Hind Siliguri',sans-serif;
   font-weight: 700;
 }
 nav{
@@ -56,10 +56,13 @@ nav{
   background-color:#d0e1f9;
   color: #0b3c5d;
 }
-.table{
+.leavetable{
+  margin-top: 20px;
   background-color: #d0e1f9;
+  color: #000000;
+  overflow-x:scroll;
 }
-.table th{
+.leavetable th{
   background-color: #000000;
   color:#d0e1f9;
 }
@@ -80,7 +83,7 @@ nav{
   margin:10vh;
   background-color: #328cc1;
   height:55vh;
-  width:45vw;
+  width:40vw;
   display: flex;
   flex-direction: column;
   align-items:center;

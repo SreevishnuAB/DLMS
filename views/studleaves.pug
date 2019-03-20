@@ -1,11 +1,14 @@
 extends layout
 
 block content
-  table(class="table")
-    tr
-      each val,index in leaves[0]
-        th= index.toUpperCase()
-    - for(var i = 0;i < leaves.length;i++)
-      tr
-        each val,index in leaves[i]
-          td= val
+  table(class="table leavetable table-striped")
+    tr  
+      - if (leaves!=0)
+          each val,index in leaves[0]
+            th= index.toUpperCase()
+          - for(var i = 0;i < leaves.length;i++)
+            tr
+              each val,index in leaves[i]
+                td= val
+      - else
+          td No Duty Leave Requests
