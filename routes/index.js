@@ -45,12 +45,12 @@ router.post('/login',(req,res,next)=>{
 //            req.session.user = req.body.user;
 //            req.session.user = "The Mask";
           bcrypt.compare(req.body.password,users[0].password,function(err,result){
-            console.log(req.body.password);
+            console.log(req.body.designation);
             console.log(result);
             if(result==true){
               req.session.user = req.body.user;
               req.session.des = req.body.designation;
-              if(req.body.designation == 'student')
+              if(req.body.designation == 'students')
                 res.redirect('../users/student');
               else
                 res.redirect('../users/faculty');
@@ -82,7 +82,10 @@ router.post('/register',async (req,res)=>{
 //  res.jsonp({success:true});
   await bcrypt.hash(req.body.password,10,function(err,hash){
 //    console.log(hash);
-    sequelize.query(`insert into ${req.body.designation} values('${req.body.username}','${req.body.id}','${hash}','${req.body.email}')`,{type:Sequelize.QueryTypes.INSERT});
+    var query = (req.body.designation == 'students')?
+      `insert into ${req.body.designation} values('${req.body.username}','${req.body.id}','${hash}','${req.body.email}')`:
+      `insert into ${req.body.designation} values('${req.body.username}','${hash}','${req.body.email}','default')`;
+    sequelize.query(query,{type:Sequelize.QueryTypes.INSERT});
     res.jsonp({success:true});
   });
 });

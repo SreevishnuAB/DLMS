@@ -39,8 +39,15 @@ router.get('/student/leaves',async (req,res)=>{
     });
 });
 
-router.post('/faculty',(req,res)=>{
-    sequelize.query()
+router.get('/faculty',async (req,res)=>{
+    var user = req.session.user;
+    await sequelize.query(`select * from dutyleaves where batch=(select batch from faculties where id='${req.session.user}')`)
+    .then(leaves=>{
+        res.render('faculty',{auth:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
+    })
+    .catch(err=>{
+        res.send(`Sorry, something went wrong: ${err}`);
+    });
 });
 
 router.get('/logout',(req,res)=>{

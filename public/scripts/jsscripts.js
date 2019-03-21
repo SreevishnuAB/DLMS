@@ -35,7 +35,7 @@ $(document).ready(function(){
             },
             success:()=>{
                 alert("Account created");
-                $("#designation").val();
+                $("#id").val();
                 window.location = '../';
             },
             error: (err)=>{
@@ -71,5 +71,14 @@ $(document).ready(function(){
                 alert('Error');
             }
         });
+    });
+
+    $('#designation').change(function(){
+        if($('#designation').val() == 'faculties'){
+
+        }
+        else{
+
+        }
     });
 });
