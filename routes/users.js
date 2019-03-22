@@ -34,15 +34,17 @@ router.get('/student/leaves',async (req,res)=>{
   var user = req.session.user;
   await sequelize.query(`select * from dutyleaves where id='${req.session.user}'`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
-        console.log(leaves.length);
+        console.log(leaves);
       res.render('studleaves',{auth:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
     });
 });
 
 router.get('/faculty',async (req,res)=>{
     var user = req.session.user;
-    await sequelize.query(`select * from dutyleaves where batch=(select batch from faculties where id='${req.session.user}')`)
+    await sequelize.query(`select * from dutyleaves where programme=(select programme from faculties where id='${req.session.user}')`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
+        console.log(leaves);
+        
         res.render('faculty',{auth:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
     })
     .catch(err=>{

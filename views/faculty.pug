@@ -9,6 +9,13 @@ block content
           - for(var i = 0;i < leaves.length;i++)
             tr
               each val,index in leaves[i]
-                td= val
+                - if(val == "Under Consideration"){
+                  - var j=0;
+                    td
+                      button(id=`abtn${j++}`) Accept
+                      button(id=`dbtn${j++}`) Deny
+                -  }
+                - else
+                    td= val
       - else
           td No Duty Leave Requests

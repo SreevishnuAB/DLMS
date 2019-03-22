@@ -83,8 +83,8 @@ router.post('/register',async (req,res)=>{
   await bcrypt.hash(req.body.password,10,function(err,hash){
 //    console.log(hash);
     var query = (req.body.designation == 'students')?
-      `insert into ${req.body.designation} values('${req.body.username}','${req.body.id}','${hash}','${req.body.email}')`:
-      `insert into ${req.body.designation} values('${req.body.username}','${hash}','${req.body.email}','default')`;
+      `insert into ${req.body.designation} values('${req.body.username}','${req.body.dummy}','${hash}','${req.body.email}')`:
+      `insert into ${req.body.designation} values('${req.body.username}','${hash}','${req.body.email}','${req.body.dummy}')`;
     sequelize.query(query,{type:Sequelize.QueryTypes.INSERT});
     res.jsonp({success:true});
   });
