@@ -28,7 +28,7 @@ const student = sequelize.define('student',{
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index',{title: 'DLMS',auth: false});
+  res.render('index',{title: 'DLMS',auth:{state:false,fac:false}});
 });
 
 router.post('/login',(req,res,next)=>{
@@ -70,7 +70,7 @@ router.post('/login',(req,res,next)=>{
 });
 
 router.get('/register',(req,res)=>{
-  res.render('register');
+  res.render('register',{title: 'DLMS',auth:{state:false,fac:false}});
 });
 
 router.post('/register',async (req,res)=>{

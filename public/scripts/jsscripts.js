@@ -80,4 +80,11 @@ $(document).ready(function(){
         else
             $('#dummy').attr('placeholder','ID');
     });
+
+    $('table').on('click',function(event){
+//        alert(event.target.id);
+        $(`#${event.target.id}`).css('width','100%');
+        $(`#dbtn${event.target.id.charAt(4)}`).css('display','none');
+        
+    });
 });

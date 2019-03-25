@@ -6,19 +6,21 @@ html
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
     script(src='/scripts/jsscripts.js')
     link(href="https://fonts.googleapis.com/css?family=Hind+Siliguri:400,600", rel="stylesheet")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons",rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/style.css')
     title= title
   body
     nav(class="navbar navbar-expand-sm navbar-dark")
       h1(class="navlogo") DLMS
-      if auth
+      if auth.state
         button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar")
           span(class="navbar-toggler-icon")
         div(class="collapse navbar-collapse" id="collapsibleNavbar")
           ul(class="mr-auto")
           ul(class="navbar-nav")
-            li(class="nav-item")
-              a(class="nav-link",href="/users/student/leaves") Duty Leaves
+            if !auth.fac
+                li(class="nav-item")
+                  a(class="nav-link",href="/users/student/leaves") Duty Leaves
             li(class="nav-item")
               a(class="nav-link", href="#") Link 2
             li(class="nav-item")

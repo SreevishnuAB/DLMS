@@ -58,6 +58,7 @@ nav{
 }
 .table{
   margin-top: 20px;
+  overflow-x: scroll;
 }
 #logout{
   background-color: #0b3c5d;
@@ -94,4 +95,19 @@ nav{
 .table th{
   background-color: #d0e1f9;
   color: #233237;
+}
+.icon{
+  padding:20px;
+  height:80%;
+}
+.icon-a{
+  background-color: green;
+}
+.icon-d{
+  background-color: red;
+}
+.i-container{
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
 }

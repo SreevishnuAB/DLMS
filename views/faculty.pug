@@ -2,7 +2,7 @@ extends layout
 
 block content
   div(class="table-responsive")
-    table(class="table table-dark table-hover table-striped")
+    table(class="table table-dark table-hover table-striped" cell-padding='0')
       tr  
         - if (leaves!=0)
             each val,index in leaves[0]
@@ -11,9 +11,9 @@ block content
               tr
                 each val,index in leaves[i]
                   - if(val == "Under Consideration"){
-                      td(id=`${index}${i}`)
-                        button(id=`abtn${i}`) Accept
-                        button(id=`dbtn${i}`) Deny
+                      td(id=`${index}${i}` class="i-container")
+                        i(id=`abtn${i}`, class="material-icons icon icon-a") done
+                        i(id=`dbtn${i}`, class="material-icons icon icon-d") block
                   -  }
                   - else
                       td(id=`${index}${i}`)= val
