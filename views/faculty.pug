@@ -1,21 +1,21 @@
 extends layout
 
 block content
-  table(class="table leavetable table-striped")
-    tr  
-      - if (leaves!=0)
-          each val,index in leaves[0]
-            th= index.toUpperCase()
-          - for(var i = 0;i < leaves.length;i++)
-            tr
-              each val,index in leaves[i]
-                - if(val == "Under Consideration"){
-                  - var j=0;
-                    td
-                      button(id=`abtn${j++}`) Accept
-                      button(id=`dbtn${j++}`) Deny
-                -  }
-                - else
-                    td= val
-      - else
-          td No Duty Leave Requests
+  div(class="table-responsive")
+    table(class="table table-dark table-hover table-striped")
+      tr  
+        - if (leaves!=0)
+            each val,index in leaves[0]
+              th= index.toUpperCase()
+            - for(var i = 0;i < leaves.length;i++)
+              tr
+                each val,index in leaves[i]
+                  - if(val == "Under Consideration"){
+                      td(id=`${index}${i}`)
+                        button(id=`abtn${i}`) Accept
+                        button(id=`dbtn${i}`) Deny
+                  -  }
+                  - else
+                      td(id=`${index}${i}`)= val
+        - else
+            td No Duty Leave Requests

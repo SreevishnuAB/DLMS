@@ -28,7 +28,7 @@ $(document).ready(function(){
             async:true,
             data: {
               username: $("#user").val(),
-              id: $("#id").val(),
+              dummy: $("#dummy").val(),
               email: $("#email").val(),
               password: $("#password").val(),
               designation: $("#designation").val()
@@ -74,11 +74,10 @@ $(document).ready(function(){
     });
 
     $('#designation').change(function(){
-        if($('#designation').val() == 'faculties'){
-
-        }
-        else{
-
-        }
+        $('#dummy').prop('hidden',false);
+        if($('#designation').val() == 'faculties')
+            $('#dummy').attr('placeholder','Programme');
+        else
+            $('#dummy').attr('placeholder','ID');
     });
 });

@@ -56,15 +56,8 @@ nav{
   background-color:#d0e1f9;
   color: #0b3c5d;
 }
-.leavetable{
+.table{
   margin-top: 20px;
-  background-color: #d0e1f9;
-  color: #000000;
-  overflow-x:scroll;
-}
-.leavetable th{
-  background-color: #000000;
-  color:#d0e1f9;
 }
 #logout{
   background-color: #0b3c5d;
@@ -97,4 +90,8 @@ nav{
   background-color: #233237;
   color:#ffffff;
   border: none;
+}
+.table th{
+  background-color: #d0e1f9;
+  color: #233237;
 }
