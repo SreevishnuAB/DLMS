@@ -83,8 +83,10 @@ $(document).ready(function(){
 
     $('table').on('click',function(event){
 //        alert(event.target.id);
-        $(`#${event.target.id}`).css('width','100%');
-        $(`#dbtn${event.target.id.charAt(4)}`).css('display','none');
-        
+        $(`#${event.target.id}`).toggleClass('clicked');
+        if(event.target.id.substring(0,4) == 'abtn')
+            $(`#dbtn${event.target.id.charAt(4)}`).toggleClass('hidden');
+        else if(event.target.id.substring(0,4) == 'dbtn')
+            $(`#abtn${event.target.id.charAt(4)}`).toggleClass('hidden');
     });
 });

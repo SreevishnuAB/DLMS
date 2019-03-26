@@ -92,13 +92,15 @@ nav{
   color:#ffffff;
   border: none;
 }
+table{
+  table-layout: fixed;
+}
 .table th{
   background-color: #d0e1f9;
   color: #233237;
 }
 .icon{
-  padding:20px;
-  height:80%;
+  width:50%;
 }
 .icon-a{
   background-color: green;
@@ -109,5 +111,19 @@ nav{
 .i-container{
   padding: 0 !important;
   margin: 0 !important;
-  overflow: hidden;
+}
+.accepted{
+  background-color: green;
+}
+.denied{
+  background-color: red;
+}
+i{
+  padding: 20px;
+}
+.clicked{
+  width:100%;
+}
+.hidden{
+  display: none;
 }

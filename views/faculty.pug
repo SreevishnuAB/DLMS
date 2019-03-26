@@ -2,7 +2,7 @@ extends layout
 
 block content
   div(class="table-responsive")
-    table(class="table table-dark table-hover table-striped" cell-padding='0')
+    table(class="table table-dark table-hover table-striped")
       tr  
         - if (leaves!=0)
             each val,index in leaves[0]
@@ -14,7 +14,15 @@ block content
                       td(id=`${index}${i}` class="i-container")
                         i(id=`abtn${i}`, class="material-icons icon icon-a") done
                         i(id=`dbtn${i}`, class="material-icons icon icon-d") block
-                  -  }
+                  - }
+                  - else if(val == "Accepted"){
+                      td(id=`${index}${i}`,class='i-container accepted')
+                        i(class="material-icons") done
+                  - }
+                  - else if(val == "Denied"){
+                      td(id=`${index}${i}`,class='i-container denied')
+                        i(class="material-icons") block
+                  - }
                   - else
                       td(id=`${index}${i}`)= val
         - else
