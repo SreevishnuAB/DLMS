@@ -83,10 +83,15 @@ $(document).ready(function(){
 
     $('table').on('click',function(event){
 //        alert(event.target.id);
+        var oldW = $(`#${event.target.id}`).width();
         $(`#${event.target.id}`).toggleClass('clicked');
         if(event.target.id.substring(0,4) == 'abtn')
             $(`#dbtn${event.target.id.charAt(4)}`).toggleClass('hidden');
         else if(event.target.id.substring(0,4) == 'dbtn')
             $(`#abtn${event.target.id.charAt(4)}`).toggleClass('hidden');
+        var newW = $(`#${event.target.id}`).width();
+        if(newW > oldW)
+        /* TODO update table */
+            alert('Updated');
     });
 });

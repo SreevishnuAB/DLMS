@@ -16,12 +16,14 @@ block content
                         i(id=`dbtn${i}`, class="material-icons icon icon-d") block
                   - }
                   - else if(val == "Accepted"){
-                      td(id=`${index}${i}`,class='i-container accepted')
-                        i(class="material-icons") done
+                      td(id=`${index}${i}`,class='i-container')
+                        i(id=`abtn${i}`, class="material-icons icon icon-a clicked") done
+                        i(id=`dbtn${i}`, class="material-icons icon icon-d hidden") block
                   - }
                   - else if(val == "Denied"){
-                      td(id=`${index}${i}`,class='i-container denied')
-                        i(class="material-icons") block
+                      td(id=`${index}${i}`,class='i-container')
+                        i(id=`abtn${i}`, class="material-icons icon icon-a hidden") done
+                        i(id=`dbtn${i}`, class="material-icons icon icon-d clicked") block
                   - }
                   - else
                       td(id=`${index}${i}`)= val
