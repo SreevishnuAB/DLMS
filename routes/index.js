@@ -27,17 +27,21 @@ const student = sequelize.define('student',{
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index',{title: 'DLMS',auth:{state:false,fac:false}});
+router.get('/', function(req, res) {
+  res.render('index',{state:false,fac:false,title: 'DLMS'});
 });
 
-router.post('/login',(req,res,next)=>{
+router.post('/login',(req,res)=>{
 //  res.send(req.body.user);
+  var user = req.body.user;
+  var designation = 'faculties';
+  if(user.substring(user.length-5).match(/[0-9]/))
+    designation = 'students';
   sequelize
     .authenticate()
     .then(()=>{
 //      console.log("Connected");
-      sequelize.query(`select password from ${req.body.designation} where id='${req.body.user}'`,{type: sequelize.QueryTypes.SELECT})
+      sequelize.query(`select password from ${designation} where id='${req.body.user}'`,{type: sequelize.QueryTypes.SELECT})
         .then(users =>{
 //          console.log(users[0]['password']);
 //          console.log(req.body.password);
@@ -45,12 +49,12 @@ router.post('/login',(req,res,next)=>{
 //            req.session.user = req.body.user;
 //            req.session.user = "The Mask";
           bcrypt.compare(req.body.password,users[0].password,function(err,result){
-            console.log(req.body.designation);
+//            console.log(req.body.designation);
             console.log(result);
             if(result==true){
               req.session.user = req.body.user;
               req.session.des = req.body.designation;
-              if(req.body.designation == 'students')
+              if(designation == 'students')
                 res.redirect('../users/student');
               else
                 res.redirect('../users/faculty');
@@ -70,7 +74,7 @@ router.post('/login',(req,res,next)=>{
 });
 
 router.get('/register',(req,res)=>{
-  res.render('register',{title: 'DLMS',auth:{state:false,fac:false}});
+  res.render('register',{title: 'DLMS',state:false,fac:false});
 });
 
 router.post('/register',async (req,res)=>{
@@ -80,6 +84,10 @@ router.post('/register',async (req,res)=>{
 //  console.log(req.body.password);
 //  console.log(req.body.designation);
 //  res.jsonp({success:true});
+var user = req.body.username;
+  var designation = 'faculties';
+  if(user.match(/[0-9]/))
+    designation = 'students';
   await bcrypt.hash(req.body.password,10,function(err,hash){
 //    console.log(hash);
     var query = (req.body.designation == 'students')?

@@ -31,7 +31,6 @@ $(document).ready(function(){
               dummy: $("#dummy").val(),
               email: $("#email").val(),
               password: $("#password").val(),
-              designation: $("#designation").val()
             },
             success:()=>{
                 alert("Account created");

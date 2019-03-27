@@ -16,7 +16,7 @@ router.get('/student', function(req, res, next) {
     }
     else{
         var user = req.session.user;
-        res.render('student',{auth:{state:true,fac:false},title:`${user.toUpperCase()} - DLMS`});
+        res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`});
         console.log(req.session.user);
     }
 });
@@ -35,7 +35,7 @@ router.get('/student/leaves',async (req,res)=>{
   await sequelize.query(`select * from dutyleaves where id='${req.session.user}'`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
         console.log(leaves);
-      res.render('studleaves',{auth:{state:true,fac:false},title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
+      res.render('studleaves',{state:true,fac:false,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
     });
 });
 
@@ -44,7 +44,7 @@ router.get('/faculty',async (req,res)=>{
     await sequelize.query(`select * from dutyleaves where programme=(select programme from faculties where id='${req.session.user}')`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
         console.log(leaves);
-        res.render('faculty',{auth:{state:true,fac:true},title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
+        res.render('faculty',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
     })
     .catch(err=>{
         res.send(`Sorry, something went wrong: ${err}`);

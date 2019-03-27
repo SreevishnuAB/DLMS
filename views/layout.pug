@@ -12,13 +12,13 @@ html
   body
     nav(class="navbar navbar-expand-sm navbar-dark")
       h1(class="navlogo") DLMS
-      if auth.state
+      if state
         button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar")
           span(class="navbar-toggler-icon")
         div(class="collapse navbar-collapse" id="collapsibleNavbar")
           ul(class="mr-auto")
           ul(class="navbar-nav")
-            if !auth.fac
+            if !fac
                 li(class="nav-item")
                   a(class="nav-link",href="/users/student/leaves") Duty Leaves
             li(class="nav-item")

@@ -29,7 +29,7 @@ nav{
   border-radius: 30px;
   margin:10vh;
   background-color: #328cc1;
-  height:55vh;
+  height:40vh;
   width:30vw;
   display: flex;
   align-items: center;
@@ -101,6 +101,7 @@ table{
   color: #233237;
 }
 .icon{
+  height:100%;
   width:50%;
 }
 .icon-a{
