@@ -26,19 +26,23 @@ $(document).ready(function(){
             url: '../register',
             cache: false,
             async:true,
+            dataType:'json',
             data: {
               username: $("#user").val(),
               dummy: $("#dummy").val(),
               email: $("#email").val(),
               password: $("#password").val(),
             },
-            success:()=>{
-                alert("Account created");
-                $("#id").val();
-                window.location = '../';
+            success:(res)=>{
+                alert(res.success);
+                {$("#id").val();
+                window.location = '../';}
             },
             error: (err)=>{
-                alert(err);
+//                error = JSON.stringify(err);
+//                alert(err.responseJSON.error);
+                if(err.responseJSON.error == 'SequelizeUniqueConstraintError')
+                    alert('User exists');
             }
         });
     });

@@ -84,17 +84,30 @@ router.post('/register',async (req,res)=>{
 //  console.log(req.body.password);
 //  console.log(req.body.designation);
 //  res.jsonp({success:true});
-var user = req.body.username;
+var user = req.body.dummy;
+console.log(user);
+
   var designation = 'faculties';
   if(user.match(/[0-9]/))
     designation = 'students';
+  console.log(designation);
+  
   await bcrypt.hash(req.body.password,10,function(err,hash){
 //    console.log(hash);
-    var query = (req.body.designation == 'students')?
-      `insert into ${req.body.designation} values('${req.body.username}','${req.body.dummy}','${hash}','${req.body.email}')`:
-      `insert into ${req.body.designation} values('${req.body.username}','${hash}','${req.body.email}','${req.body.dummy}')`;
-    sequelize.query(query,{type:Sequelize.QueryTypes.INSERT});
-    res.jsonp({success:true});
+    var query = (designation == 'students')?
+      `insert into ${designation} values('${req.body.username}','${req.body.dummy}','${hash}','${req.body.email}')`:
+      `insert into ${designation} values('${req.body.username}','${hash}','${req.body.email}','${req.body.dummy}')`;
+    sequelize.query(query,{type:Sequelize.QueryTypes.INSERT})
+    .then((result)=>{
+      console.log(`Then: ${result}`);
+      res.json({success:'Account Created'});
+    })
+    .catch(err=>{
+      res.status(500).json({error:err.name});
+      console.log(`Catch: ${err.name}`);
+    });
+
+//    res.jsonp({success:true});
   });
 });
 
