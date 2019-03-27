@@ -10,6 +10,15 @@ block content
             - for(var i = 0;i < leaves.length;i++)
               tr
                 each val,index in leaves[i]
-                  td= val
+                  - if(val == "Accepted"){
+                      td(class='i-container')
+                        i(class="material-icons icon icon-a clicked") done
+                  - }
+                  - else if(val == "Denied"){
+                      td(class='i-container')
+                        i(class="material-icons icon icon-a clicked") done
+                  - }
+                  - else
+                      td= val
         - else
             td No Duty Leave Requests
