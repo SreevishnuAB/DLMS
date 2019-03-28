@@ -8,7 +8,7 @@ $(document).ready(function(){
             cache: 'false',
             success: function(){
                 alert("Logged out successfully");
-                window.location = '/'
+                window.location = '/';
             },
             error: function(){
                 alert("error");
@@ -95,7 +95,7 @@ $(document).ready(function(){
             $('.reg-form, .des-select').toggleClass('hidden');
     });
 
-    $('table').on('click',function(event){
+    $('.faculty').on('click',function(event){
 //        alert(event.target.id);
         var oldW = $(`#${event.target.id}`).width();
         $(`#${event.target.id}`).toggleClass('clicked');
