@@ -49,6 +49,7 @@ nav{
   color: #d0e1f9;
   border-radius: 15px;
   margin-top: 3vh;
+  margin-bottom: 3vh;
   background-color: #0b3c5d;
   padding: 10px;
 }
@@ -129,8 +130,9 @@ i{
 .hidden{
   display: none;
 }
-.modal-content{
+.modal-content, .modal-body{
   background-color:#233237;
+  padding: 0 !important;
 }
 a{
   cursor: pointer;
@@ -139,9 +141,10 @@ a{
   width:47.5%;
   border:none;
   padding: 20px;
-  margin-left:2.5px;
-  margin-right:2.5px
+  margin:2.5px;
+  margin:2.5px
 }
 .reg-form{
   background-color: #328cc1;
+  margin:5px;
 }
