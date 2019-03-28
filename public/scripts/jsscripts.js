@@ -78,7 +78,7 @@ $(document).ready(function(){
 
     $('.des').click(function(event){
         var target = event.target.id;
-        $('.modal-title').html(`${$('.modal-title').html()} - ${target.charAt(0).toUpperCase()}${target.substring(1)}`)
+        $('.modal-title').html(`${$('.modal-title').html()} - ${target.charAt(0).toUpperCase()}${target.substring(1)}`);
         $('#dummy').prop('hidden',false);
         if(event.target.id == 'faculty')
             $('#dummy').attr('placeholder','Programme');
@@ -89,7 +89,7 @@ $(document).ready(function(){
 
     $('.modal').on('show.bs.modal',function(){
         $('input[type="text"], input[type="password"], input[type="email"]').val('');
-        $('.modal-title').html('Register')
+        $('.modal-title').html('Register');
         var cname = $('.reg-form').attr('class');
         if(!cname.includes('hidden'))
             $('.reg-form, .des-select').toggleClass('hidden');

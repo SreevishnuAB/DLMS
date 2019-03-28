@@ -59,6 +59,7 @@ nav{
 }
 .table{
   margin-top: 20px;
+  overflow-x: scroll;
 }
 #logout{
   background-color: #0b3c5d;
