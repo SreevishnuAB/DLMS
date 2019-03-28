@@ -76,12 +76,13 @@ $(document).ready(function(){
         });
     });
 
-    $('#designation').change(function(){
+    $('.des, .close, .cls').click(function(event){
         $('#dummy').prop('hidden',false);
-        if($('#designation').val() == 'faculties')
+        if(event.target.id == 'faculty')
             $('#dummy').attr('placeholder','Programme');
         else
             $('#dummy').attr('placeholder','ID');
+        $('.reg-form, .des-select').toggleClass('hidden');
     });
 
     $('table').on('click',function(event){

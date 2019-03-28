@@ -73,10 +73,6 @@ router.post('/login',(req,res)=>{
   });
 });
 
-router.get('/register',(req,res)=>{
-  res.render('register',{title: 'DLMS',state:false,fac:false});
-});
-
 router.post('/register',async (req,res)=>{
 //  console.log(req.body);
 //  console.log(req.body.id);

@@ -45,14 +45,14 @@ nav{
   color:#ffffff;
   border: none;
 }
-.btn{
+.btn-cus{
   color: #d0e1f9;
   border-radius: 15px;
   margin-top: 3vh;
   background-color: #0b3c5d;
   padding: 10px;
 }
-.btn:hover{
+.btn-cus:hover{
   background-color:#d0e1f9;
   color: #0b3c5d;
 }
@@ -128,4 +128,20 @@ i{
 }
 .hidden{
   display: none;
+}
+.modal-content{
+  background-color:#233237;
+}
+a{
+  cursor: pointer;
+}
+.des{
+  width:47.5%;
+  border:none;
+  padding: 20px;
+  margin-left:2.5px;
+  margin-right:2.5px
+}
+.reg-form{
+  background-color: #328cc1;
 }
