@@ -2,32 +2,36 @@ var express = require('express');
 var router = express.Router();
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('postgres://qrlwmsdtnnltzr:72fd6b12362abaca65b66c6462f40ed2794b5b537c9ce252e0ec063966b7670f@ec2-54-217-208-105.eu-west-1.compute.amazonaws.com:5432/d5k10ha5d9cd1t',{
-    dialect:'postgres',
-    dialectOptions:{
-      ssl: true
-    }
+  dialect:'postgres',
+  dialectOptions:{
+    ssl: true
+  }
 });
 
 /* GET users listing. */
 router.get('/student', function(req, res, next) {
 //  res.send('respond with a resource');
-    if(req.session.user == undefined){
-        res.redirect('../');
-    }
-    else{
-        var user = req.session.user;
-        res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`});
-        console.log(req.session.user);
-    }
+  if(req.session.user == undefined){
+    res.redirect('../');
+  }
+  else{
+    var user = req.session.user;
+    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`});
+    console.log(req.session.user);
+  }
 });
 
 router.post('/student',async (req,res)=>{
-    console.log(req.body);
-    await sequelize.query(`insert into dutyleaves values('${req.body.id}','${req.body.prog}','${req.body.yoj}','${req.body.batch}','${req.body.sem}','${req.body.event}','${req.body.from}','${req.body.to}')`,{type:Sequelize.QueryTypes.INSERT})
-        .then(()=>{
-            res.jsonp({success:true});      
-    });
-//    res.jsonp({success:true});
+  console.log(req.body);
+  await sequelize.query(`insert into dutyleaves values('${req.body.id}','${req.body.yoj}','${req.body.sem}','${req.body.event}','${req.body.from}','${req.body.to}','${req.body.prog}')`,{type:Sequelize.QueryTypes.INSERT})
+    .then((res)=>{
+      console.log(res);
+      res.jsonp({success:true});      
+  })
+  .catch(err=>{
+    console.log(err.original.detail);
+    res.status(500).jsonp({error:err.original.detail});
+  });
 });
 
 router.get('/student/leaves',async (req,res)=>{

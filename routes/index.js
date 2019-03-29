@@ -100,7 +100,7 @@ console.log(user);
     })
     .catch(err=>{
       res.status(500).json({error:err.name});
-      console.log(`Catch: ${err.name}`);
+      console.log(`Catch: ${err}`);
     });
 
 //    res.jsonp({success:true});
