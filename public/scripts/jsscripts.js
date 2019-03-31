@@ -29,7 +29,11 @@ $(document).ready(function(){
       dataType:'json',
       data: {
         username: $("#user-reg").val(),
-        dummy: $("#dummy").val(),
+        dummy: ()=>{
+          if($('#id').attr('class').includes('hidden'))
+            return $('#progyr').val();
+          return $('#id').val();
+        },
         email: $("#email").val(),
         password: $("#password").val(),
       },
@@ -40,9 +44,9 @@ $(document).ready(function(){
       },
       error: (err)=>{
 //        error = JSON.stringify(err);
-//        alert(err.responseJSON.error);
-        if(err.responseJSON.error == 'SequelizeUniqueConstraintError')
-          alert('User exists');
+        alert(err.responseJSON.error);
+//        if(err.responseJSON.error == 'SequelizeUniqueConstraintError')
+//          alert('User exists');
       }
     });
   });
@@ -81,9 +85,9 @@ $(document).ready(function(){
     $('.modal-title').html(`${$('.modal-title').html()} - ${target.charAt(0).toUpperCase()}${target.substring(1)}`);
     $('#dummy').prop('hidden',false);
     if(target == 'faculty')
-      $('#dummy').attr('placeholder','Programme');
+      $('#progyr').toggleClass('hidden').prop('required',true);
     else
-      $('#dummy').attr('placeholder','ID');
+      $('#id').toggleClass('hidden').prop('required',true);
     $('.reg-form, .des-select').toggleClass('hidden');
   });
 
@@ -91,6 +95,12 @@ $(document).ready(function(){
     $('input[type="text"], input[type="password"], input[type="email"]').val('');
     $('.modal-title').html('Register');
     var cname = $('.reg-form').attr('class');
+    var fele = $('#progyr').attr('class');
+    var sele = $('#id').attr('class');
+    if(!fele.includes('hidden'))
+      $('#progyr').toggleClass('hidden');
+    if(!sele.includes('hidden'))
+      $('#id').toggleClass('hidden');
     if(!cname.includes('hidden'))
       $('.reg-form, .des-select').toggleClass('hidden');
   });
