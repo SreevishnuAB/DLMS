@@ -44,7 +44,7 @@ $(document).ready(function(){
       },
       error: (err)=>{
 //        error = JSON.stringify(err);
-        alert(err.responseJSON.error);
+        alert(err.responseJSON.error.parent.detail);
 //        if(err.responseJSON.error == 'SequelizeUniqueConstraintError')
 //          alert('User exists');
       }
