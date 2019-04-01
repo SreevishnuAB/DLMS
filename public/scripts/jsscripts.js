@@ -8,9 +8,6 @@ $(document).ready(function(){
       cache: 'false',
       success: function(){
         alert("Logged out successfully");
-//        $("#stud-toast .toast-header").html('!')
-//        $("#stud-toast .toast-body").html("Logged out successfully");
-//        $("#stud-toast").toast('show');
         window.location = '/';
       },
       error: function(){
@@ -32,27 +29,20 @@ $(document).ready(function(){
       dataType:'json',
       data: {
         username: $("#user-reg").val(),
-        dummy: ()=>{
-          if($('#id').attr('class').includes('hidden'))
-            return $('#progyr').val();
-          return $('#id').val();
-        },
+        dummy: $("#dummy").val(),
         email: $("#email").val(),
         password: $("#password").val(),
       },
       success:(res)=>{
         alert(res.success);
-//        $("#login-toast .toast-header").html('Success!')
-//        $("#login-toast .toast-body").html(res.success);
-//        $("#login-toast").toast('show');
         $("#id").val();
-        $('#myModal').modal('hide');
+        window.location = '../';
       },
       error: (err)=>{
 //        error = JSON.stringify(err);
-        alert(err.responseJSON.error.parent.detail);
-//        if(err.responseJSON.error == 'SequelizeUniqueConstraintError')
-//          alert('User exists');
+//        alert(err.responseJSON.error);
+        if(err.responseJSON.error == 'SequelizeUniqueConstraintError')
+          alert('User exists');
       }
     });
   });
@@ -68,6 +58,11 @@ $(document).ready(function(){
       cache:false,
       async:true,
       data:{
+        id: $('#id').val(),
+        prog: $('#prog').val(),
+        yoj: $('#yoj').val(),
+        batch: $('#batch').val(),
+        sem: $('#sem').val(),
         event: $('#event').val(),
         from: $('#from').val(),
         to: $('#to').val(),
@@ -76,7 +71,7 @@ $(document).ready(function(){
           alert("Leave requested");
         },
         error:(err)=>{
-          alert(err.responseJSON.error.parent.detail);
+          alert(err.responseJSON.error);
       }
     });
   });
@@ -84,11 +79,10 @@ $(document).ready(function(){
   $('.des').click(function(event){
     var target = event.target.id;
     $('.modal-title').html(`${$('.modal-title').html()} - ${target.charAt(0).toUpperCase()}${target.substring(1)}`);
-    $('#dummy').prop('hidden',false);
     if(target == 'faculty')
-      $('#progyr').toggleClass('hidden').prop('required',true);
+      $('#dummy').attr('placeholder','Programme');
     else
-      $('#id').toggleClass('hidden').prop('required',true);
+      $('#dummy').prop('hidden',false);
     $('.reg-form, .des-select').toggleClass('hidden');
   });
 
@@ -96,29 +90,40 @@ $(document).ready(function(){
     $('input[type="text"], input[type="password"], input[type="email"]').val('');
     $('.modal-title').html('Register');
     var cname = $('.reg-form').attr('class');
-    var fele = $('#progyr').attr('class');
-    var sele = $('#id').attr('class');
-    if(!fele.includes('hidden'))
-      $('#progyr').toggleClass('hidden');
-    if(!sele.includes('hidden'))
-      $('#id').toggleClass('hidden');
     if(!cname.includes('hidden'))
       $('.reg-form, .des-select').toggleClass('hidden');
   });
 
-$('.faculty').on('click',function(event){
-//        alert(event.target.id);
+  $('.faculty').on('click',function(event){
+//        alert(event.target.id);  
     var target = event.target.id;
     var oldW = $(`#${target}`).width();
     $(`#${target}`).toggleClass('clicked');
     if(target.substring(0,4) == 'abtn')
-        $(`#dbtn${target.charAt(4)}`).toggleClass('hidden');
+      $(`#dbtn${target.charAt(4)}`).toggleClass('hidden');
     else if(target.substring(0,4) == 'dbtn')
-        $(`#abtn${target.charAt(4)}`).toggleClass('hidden');
+      $(`#abtn${target.charAt(4)}`).toggleClass('hidden');
     var newW = $(`#${target}`).width();
     if(newW > oldW){
+//      alert($(`#event${target.charAt(4)}`).text());
 //      alert('Updated');
-
-    }
+      $.ajax({
+        type:'POST',
+        url:'../users/faculty/update',
+        cache:false,
+        async:true,
+        data:{
+          status: target.charAt(0),
+          id: $(`#id${target.charAt(4)}`).text(),
+          event: $(`#event${target.charAt(4)}`).text(),
+          },
+        success:(success)=>{
+          alert(success.success);
+          },
+        error:(err)=>{
+          alert(JSON.stringify(err));
+          }
+        });
+      }
   });
 });
