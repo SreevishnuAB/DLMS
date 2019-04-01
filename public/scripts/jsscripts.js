@@ -8,6 +8,9 @@ $(document).ready(function(){
       cache: 'false',
       success: function(){
         alert("Logged out successfully");
+//        $("#stud-toast .toast-header").html('!')
+//        $("#stud-toast .toast-body").html("Logged out successfully");
+//        $("#stud-toast").toast('show');
         window.location = '/';
       },
       error: function(){
@@ -39,8 +42,11 @@ $(document).ready(function(){
       },
       success:(res)=>{
         alert(res.success);
+//        $("#login-toast .toast-header").html('Success!')
+//        $("#login-toast .toast-body").html(res.success);
+//        $("#login-toast").toast('show');
         $("#id").val();
-        window.location = '../';
+        $('#myModal').modal('hide');
       },
       error: (err)=>{
 //        error = JSON.stringify(err);
@@ -62,11 +68,6 @@ $(document).ready(function(){
       cache:false,
       async:true,
       data:{
-        id: $('#id').val(),
-        prog: $('#prog').val(),
-        yoj: $('#yoj').val(),
-        batch: $('#batch').val(),
-        sem: $('#sem').val(),
         event: $('#event').val(),
         from: $('#from').val(),
         to: $('#to').val(),
@@ -75,7 +76,7 @@ $(document).ready(function(){
           alert("Leave requested");
         },
         error:(err)=>{
-          alert(err.responseJSON.error);
+          alert(err.responseJSON.error.parent.detail);
       }
     });
   });

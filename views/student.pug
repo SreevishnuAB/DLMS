@@ -8,37 +8,32 @@ block content
           td
             label(for="id") ID:
           td
-            input(type="text",id="id",placeholder="Enter ID",class="lformelement",required)
+            input(type="text",id="id",value=`${session.user}`,class="lformelement",readonly)
         tr
           td
             label(for="prog") Programme:
           td
-            input(type="text",placeholder="Enter Programme",id="prog",class="lformelement",required)
+            input(type="text",value=`${session.prog}`,id="prog",class="lformelement",readonly)
         tr
           td
             label(for="year") Year of Joining:
           td
-            input(type="text",placeholder="Enter Year of Joining",id="yoj",class="lformelement",required)
-        tr
-          td
-            label(for="batch") Batch:
-          td
-            input(type="text",placeholder="Enter Batch",id="batch",class="lformelement",required)
+            input(type="text",value=`${session.year}`,id="yoj",class="lformelement",readonly)
         tr
           td
             label(for="sem") Semester:
           td
-            input(type="text",placeholder="Enter Semester",id="sem",class="lformelement",required)
+            input(type="text",value=`${session.sem}`,id="sem",class="lformelement",readonly)
         tr
           td
             label(for="from") From:
           td
-            input(type="date",value=date,id="from",class="lformelement",required)
+            input(type="date",min=date,value=date,id="from",class="lformelement",required)
         tr
           td
             label(for="to") To:
           td
-            input(type="date",value=date,id="to",class="lformelement",required)
+            input(type="date",min=date,id="to",class="lformelement",required)
         tr
           td
             label(for="event") Event:

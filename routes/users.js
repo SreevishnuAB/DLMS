@@ -16,21 +16,25 @@ router.get('/student', function(req, res, next) {
   }
   else{
     var user = req.session.user;
-    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`});
+    var date = new Date();
+    var dd = date.getDate(), mm = date.getMonth()+1;
+    dd = (dd<10)?`0${dd}`:`${dd}`;
+    mm = (mm<10)?`0${mm}`:`${mm}`;
+    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`,session:req.session,date:`${date.getFullYear()}-${mm}-${dd}`});
     console.log(req.session.user);
   }
 });
 
 router.post('/student',async (req,res)=>{
   console.log(req.body);
-  await sequelize.query(`insert into dutyleaves values('${req.body.id}','${req.body.yoj}','${req.body.sem}','${req.body.event}','${req.body.from}','${req.body.to}','${req.body.prog}')`,{type:Sequelize.QueryTypes.INSERT})
-    .then((res)=>{
-      console.log(res);
+  await sequelize.query(`insert into dutyleaves(id,year,semester,event,from_date,to_date,programme) values('${req.session.user}','${req.session.year}','${req.session.sem}','${req.body.event}','${req.body.from}','${req.body.to}','${req.session.prog}')`,{type:Sequelize.QueryTypes.INSERT})
+    .then((result)=>{
+      console.log(result);
       res.jsonp({success:true});      
   })
   .catch(err=>{
-    console.log(err.original.detail);
-    res.status(500).jsonp({error:err.original.detail});
+    console.log(err);
+    res.status(500).jsonp({error:err});
   });
 });
 

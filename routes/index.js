@@ -63,7 +63,8 @@ router.post('/login',desSetter,async (req,res,next)=>{
               if(res.locals.designation == 'students'){
                 req.session.prog = res.locals.prog;
                 req.session.year = res.locals.year;
-                console.log(`Prog:${req.session.prog} Year:${req.session.year}`);
+                req.session.sem = res.locals.sem;
+                console.log(req.session);
                 res.redirect('../users/student');
               }
               else

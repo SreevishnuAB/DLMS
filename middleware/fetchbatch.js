@@ -31,6 +31,11 @@ desSetter = async (req,res,next)=>{
         console.log(err);
       });
     }
+    year = parseInt(year);
+    var date = new Date()
+    var month = date.getMonth(), curyr = date.getFullYear(), sem;
+    sem = (month <=5)?(curyr-year)*2:2*(curyr-year)+1;
+    res.locals.sem = sem;  
     res.locals.designation = designation;
     next();
   }
