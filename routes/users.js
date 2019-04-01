@@ -30,11 +30,12 @@ router.post('/student',async (req,res)=>{
   console.log(req.body);
   await sequelize.query(`insert into dutyleaves(id,year,semester,event,from_date,to_date,programme) values('${req.session.user}','${req.session.year}','${req.session.sem}','${req.body.event}','${req.body.from}','${req.body.to}','${req.session.prog}')`,{type:Sequelize.QueryTypes.INSERT})
     .then((result)=>{
-//      console.log(result);
-      sequelize.query(`select email from faculties where programme='${req.session.prog}' and year='${req.session.year}'`,{type:Sequelize.QueryTypes.SELECT})
+      console.log(result);
+      res.json({success:true});
+/*      sequelize.query(`select email from faculties where programme='${req.session.prog}' and year='${req.session.year}'`,{type:Sequelize.QueryTypes.SELECT})
         .then(result=>{
           console.log((...result)=>{for });
- /*         let transporter = nodemailer.createTransport({
+          let transporter = nodemailer.createTransport({
             host:"smtp.ethereal.email",
             port:587,
             secure:false,
@@ -46,12 +47,11 @@ router.post('/student',async (req,res)=>{
           let mailOptions = {
             from: '"DLMS - ASAS,KOCHI" <dlms@asaskochi.com>',
             to:'',
-          };*/
+          };
         })
         .catch(err=>{
           console.log(err);
-        });
-      res.jsonp({success:true});
+        });*/
   })
   .catch(err=>{
     console.log(err);

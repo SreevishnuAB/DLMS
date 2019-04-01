@@ -58,11 +58,6 @@ $(document).ready(function(){
       cache:false,
       async:true,
       data:{
-        id: $('#id').val(),
-        prog: $('#prog').val(),
-        yoj: $('#yoj').val(),
-        batch: $('#batch').val(),
-        sem: $('#sem').val(),
         event: $('#event').val(),
         from: $('#from').val(),
         to: $('#to').val(),
