@@ -11,6 +11,7 @@ desSetter = async (req,res,next)=>{
   console.log("Data"+req.body.dummy);
   
   var user = (req.body.dummy)?req.body.dummy:req.body.user;
+  user = user.toLowerCase();
   var prog = user.substring(4,user.length-3);
   var year = `20${prog.substring(prog.length-2)}`;
   prog = prog.substring(0,prog.length-2)
