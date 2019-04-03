@@ -29,20 +29,27 @@ $(document).ready(function(){
       dataType:'json',
       data: {
         username: $("#user-reg").val(),
-        dummy: $("#dummy").val(),
+        dummy: ()=>{
+          if($('#id').attr('class').includes('hidden'))
+            return $('#progyr').val();
+          return $('#id').val();
+        },
         email: $("#email").val(),
         password: $("#password").val(),
       },
       success:(res)=>{
         alert(res.success);
+//        $("#login-toast .toast-header").html('Success!')
+//        $("#login-toast .toast-body").html(res.success);
+//        $("#login-toast").toast('show');
         $("#id").val();
-        window.location = '../';
+        $('#myModal').modal('hide');
       },
       error: (err)=>{
 //        error = JSON.stringify(err);
-//        alert(err.responseJSON.error);
-        if(err.responseJSON.error == 'SequelizeUniqueConstraintError')
-          alert('User exists');
+        alert(err.responseJSON.error.parent.detail);
+//        if(err.responseJSON.error == 'SequelizeUniqueConstraintError')
+//          alert('User exists');
       }
     });
   });
@@ -62,11 +69,12 @@ $(document).ready(function(){
         from: $('#from').val(),
         to: $('#to').val(),
         },
-        success: ()=>{
-          alert("Leave requested");
+        success: (res)=>{
+          alert(`Please visit ${res.url} to see the email notification beta`);
+//          alert(JSON.stringify(res));
         },
         error:(err)=>{
-          alert(err.responseJSON.error);
+          alert(err.responseJSON.error.parent.detail);
       }
     });
   });
@@ -74,10 +82,11 @@ $(document).ready(function(){
   $('.des').click(function(event){
     var target = event.target.id;
     $('.modal-title').html(`${$('.modal-title').html()} - ${target.charAt(0).toUpperCase()}${target.substring(1)}`);
+    alert(target);
     if(target == 'faculty')
-      $('#dummy').attr('placeholder','Programme');
+      $('#progyr').toggleClass('hidden').prop('required',true);
     else
-      $('#dummy').prop('hidden',false);
+      $('#id').toggleClass('hidden').prop('required',true);
     $('.reg-form, .des-select').toggleClass('hidden');
   });
 
@@ -85,6 +94,12 @@ $(document).ready(function(){
     $('input[type="text"], input[type="password"], input[type="email"]').val('');
     $('.modal-title').html('Register');
     var cname = $('.reg-form').attr('class');
+    var fele = $('#progyr').attr('class');
+    var sele = $('#id').attr('class');
+    if(!fele.includes('hidden'))
+      $('#progyr').toggleClass('hidden');
+    if(!sele.includes('hidden'))
+      $('#id').toggleClass('hidden');
     if(!cname.includes('hidden'))
       $('.reg-form, .des-select').toggleClass('hidden');
   });

@@ -54,8 +54,9 @@ router.post('/student',async (req,res)=>{
           };
 
           let mail = await transporter.sendMail(mailOptions);
-
+//          res.jsonp({url:nodemailer.getTestMessageUrl(mail)});
           console.log("Preview URL: %s", nodemailer.getTestMessageUrl(mail));
+          res.jsonp({url:nodemailer.getTestMessageUrl(mail)});
         })
         .catch(err=>{
           console.log(err);
