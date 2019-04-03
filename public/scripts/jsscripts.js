@@ -82,7 +82,7 @@ $(document).ready(function(){
   $('.des').click(function(event){
     var target = event.target.id;
     $('.modal-title').html(`${$('.modal-title').html()} - ${target.charAt(0).toUpperCase()}${target.substring(1)}`);
-    alert(target);
+//    alert(target);
     if(target == 'faculty')
       $('#progyr').toggleClass('hidden').prop('required',true);
     else
