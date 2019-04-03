@@ -28,13 +28,13 @@ $(document).ready(function(){
       async:true,
       dataType:'json',
       data: {
-        username: $("#user-reg").val(),
+        username: $("#user-reg").val().toLowerCase(),
         dummy: ()=>{
           if($('#id').attr('class').includes('hidden'))
             return $('#progyr').val();
-          return $('#id').val();
+          return $('#id').val().toLowerCase();
         },
-        email: $("#email").val(),
+        email: $("#email").val().toLowerCase(),
         password: $("#password").val(),
       },
       success:(res)=>{
