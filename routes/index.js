@@ -29,7 +29,7 @@ const student = sequelize.define('student',{
 
 /* GET home page. */
 router.get('/', async function(req, res) {
-  await sequelize.query('select programme,year from programmes order by programme,year asc',{type: sequelize.QueryTypes.SELECT})
+  await sequelize.query("select programme,year from programmes where programme!='admin' order by programme,year asc",{type: sequelize.QueryTypes.SELECT})
     .then(prog =>{
       console.log(prog);
       res.render('index',{state:false,fac:false,title: 'DLMS',prog:prog})
@@ -37,53 +37,34 @@ router.get('/', async function(req, res) {
 });
 
 router.post('/login',desSetter,async (req,res,next)=>{
-//  res.send(req.body.user);
-//  var user = req.body.user;
-//  var designation = 'faculties';
-//  if(user.substring(user.length-5).match(/[0-9]/))
-//    designation = 'students';
   console.log(res.locals.designation);
-  
-  await sequelize
-    .authenticate()
-    .then(()=>{
-//      console.log("Connected");
-      sequelize.query(`select password from ${res.locals.designation} where id='${req.body.user}'`,{type: sequelize.QueryTypes.SELECT})
-        .then(users =>{
-//          console.log(users[0]['password']);
-//          console.log(req.body.password);
-//          if(users[0].password == req.body.password){
-//            req.session.user = req.body.user;
-//            req.session.user = "The Mask";
-          bcrypt.compare(req.body.password,users[0].password,function(err,result){
-//            console.log(req.body.designation);
-            console.log(result);
-            if(result==true){
-              req.session.user = req.body.user;
-              if(res.locals.designation == 'students'){
-                req.session.prog = res.locals.prog;
-                req.session.year = res.locals.year;
-                req.session.sem = res.locals.sem;
-                req.session.designation = res.locals.designation;
-                console.log(req.session);
-                res.redirect('../users/student');
-              }
-              else
-                res.redirect('../users/faculty');
-            }
-            else
-              res.send("Invalid credentials");
-          });
-        })
-        .catch(err=>{
-          res.send(`Something went Wrong : ${err}`);
+   await  sequelize.query(`select password from ${res.locals.designation} where id='${req.body.user}'`,{type: sequelize.QueryTypes.SELECT})
+    .then(users =>{
+      bcrypt.compare(req.body.password,users[0].password,function(err,result){
+        console.log(result);
+        if(result==true){
+          req.session.user = req.body.user;
+          if(res.locals.designation == 'students'){
+            req.session.prog = res.locals.prog;
+            req.session.year = res.locals.year;
+            req.session.sem = res.locals.sem;
+            req.session.designation = res.locals.designation;
+            console.log(req.session);
+            res.redirect('../users/student');
+          }
+          else if(req.body.user == 'admin')
+            res.redirect('../users/admin');
+          else
+            res.redirect('../users/faculty');
+          }
+        else
+          res.send("Invalid credentials");
         });
-    }
-  )
-  .catch(err=>{
-    console.log(err);
-  });
-});
+      })
+    .catch(err=>{
+      res.send(`Something went Wrong : ${err}`);
+      });
+    });
 
 router.post('/register',desSetter,async (req,res)=>{
 //  console.log(req.body);

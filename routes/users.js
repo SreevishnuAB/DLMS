@@ -78,16 +78,21 @@ router.get('/student/leaves',async (req,res)=>{
 });
 
 router.get('/faculty',async (req,res)=>{
+  if(req.session.user == undefined){
+    res.redirect('../');
+  }
+  else{
     var user = req.session.user;
     await sequelize.query(`select * from dutyleaves where programme=(select programme from faculties where id='${req.session.user}')`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
         console.log(leaves);
         res.render('faculty',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
-    })
+      })
     .catch(err=>{
         res.send(`Sorry, something went wrong: ${err}`);
-    });
-});
+      });
+    }
+  });
 
 router.post('/faculty/update',async (req,res)=>{
   console.log(req.body);
@@ -105,6 +110,11 @@ router.post('/faculty/update',async (req,res)=>{
 router.get('/logout',(req,res)=>{
     req.session.destroy();
     res.jsonp({success:true});
+});
+
+router.get('/admin',(req,res)=>{
+  /* Create admin layout */
+  res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`});
 });
 
 module.exports = router;
