@@ -133,7 +133,15 @@ router.get('/admin',async (req,res)=>{
     .catch(err=>{
       console.log(err);
     });
-//  await sequelize.
+  await sequelize.query('select * from events',{type:Sequelize.QueryTypes.SELECT})
+    .then(result=>{
+      console.log(result);
+//TODO
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+
   res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,faculties:faculties});
 });
 
