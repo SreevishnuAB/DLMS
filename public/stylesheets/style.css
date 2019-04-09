@@ -23,7 +23,7 @@ nav{
   float:left;
 }
 .navbar-nav{
-  float:right;
+  float:right !important;
 }
 .form{
   /*border-radius: 30px;*/
@@ -163,4 +163,8 @@ a{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
+}
+.tab-container{
+  float:left;
+  width:100%;
 }

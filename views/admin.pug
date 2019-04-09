@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  br
+  div(class="tab-container")
+    ul(class="nav nav-tabs nav-justified")
+      li(class="nav-item")
+        a(class="nav-link active" data-toggle="tab" href="#users") Users
+      li(class="nav-item")
+        a(class="nav-link" data-toggle="tab" href="#events") Events
+      li(class="nav-item")
+        a(class="nav-link" data-toggle="tab" href="#programmes") Programmes
+
+  <!-- Tab panes -->
+  div(class="tab-content")
+    div(id="users" class="container tab-pane active")
+      br
+      h3 TODO Users
+    div(id="events" class="container tab-pane fade")
+      br
+      h3 TODO Events
+    div(id="programmes" class="container tab-pane fade")
+      br
+      h3 TODO Programmes

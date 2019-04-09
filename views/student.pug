@@ -38,5 +38,8 @@ block content
           td
             label(for="event") Event:
           td
-            input(type="text",placeholder="Enter Event",id="event",class="lformelement",required)
+            select(id="event",class="lformelement")
+              option(value="",disabled,selected) Select Event
+              each val in event
+                option(value=`${val.event}`)= `${val.event}`
     input(type="submit",form="leave",id="req",class="btn btn-cus")

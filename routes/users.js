@@ -10,8 +10,17 @@ var sequelize = new Sequelize('postgres://qrlwmsdtnnltzr:72fd6b12362abaca65b66c6
 });
 
 /* GET users listing. */
-router.get('/student', function(req, res, next) {
+router.get('/student', async function(req, res, next) {
 //  res.send('respond with a resource');
+  var events;
+  await sequelize.query('select event from events',{type:Sequelize.QueryTypes.SELECT})
+    .then(result=>{
+      console.log(result);
+      events = result;
+    })
+    .catch(err=>{
+      console.log(err);
+    });
   if(req.session.user == undefined){
     res.redirect('../');
   }
@@ -21,7 +30,7 @@ router.get('/student', function(req, res, next) {
     var dd = date.getDate(), mm = date.getMonth()+1;
     dd = (dd<10)?`0${dd}`:`${dd}`;
     mm = (mm<10)?`0${mm}`:`${mm}`;
-    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`,session:req.session,date:`${date.getFullYear()}-${mm}-${dd}`});
+    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`,session:req.session,date:`${date.getFullYear()}-${mm}-${dd}`,event:events});
     console.log(req.session.user);
   }
 });
@@ -112,9 +121,20 @@ router.get('/logout',(req,res)=>{
     res.jsonp({success:true});
 });
 
-router.get('/admin',(req,res)=>{
+router.get('/admin',async (req,res)=>{
   /* Create admin layout */
-  res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`});
+  var events,faculties,programmes;
+  var user = req.session.user;
+  await sequelize.query('select * from faculties',{type:Sequelize.QueryTypes.SELECT})
+    .then(result=>{
+      console.log(result);
+      faculties = result;
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+//  await sequelize.
+  res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,faculties:faculties});
 });
 
 module.exports = router;

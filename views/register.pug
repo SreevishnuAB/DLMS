@@ -21,7 +21,7 @@ block regmodal
               br
               input(class="formelement hidden",type="text",id="id",placeholder="ID")
               select(id="progyr", class="formelement hidden")
-                option(value="") Select Programme
+                option(value="",disabled,selected) Select Programme
                 each val in prog
                   option(value=`${val.year} ${val.programme}`)= `${val.year} ${val.programme}`
               br
