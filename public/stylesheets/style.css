@@ -69,7 +69,13 @@ nav{
   color: #d0e1f9;
   border:none;
   transition-duration: 0.5s;
+  height:45px;
+  width:45px;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
 }
 #logout:hover{
   background-color: #000000;
