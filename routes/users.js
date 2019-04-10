@@ -126,27 +126,57 @@ router.get('/admin',async (req,res)=>{
   var events,faculties,programmes;
   var user = req.session.user;
   await sequelize.query("select id,email,programme,year from faculties where id!='admin'",{type:Sequelize.QueryTypes.SELECT})
-    .then(result=>{
-      console.log(result);
-      faculties = result;
-    })
-    .catch(err=>{
-      console.log(err);
-    });
-  await sequelize.query('select * from events',{type:Sequelize.QueryTypes.SELECT})
-    .then(result=>{
-      console.log(result);
-      events = result;
-    })
-    .catch(err=>{
-      console.log(err);
-    });
+  .then(result=>{
+    console.log(result);
+    faculties = result;
+  })
+  .catch(err=>{
+    console.log(err);
+  });
 
-  res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,faculties:faculties,events:events});
+  await sequelize.query('select * from events',{type:Sequelize.QueryTypes.SELECT})
+  .then(result=>{
+    console.log(result);
+    events = result;
+  })
+  .catch(err=>{
+    console.log(err);
+  });
+
+  await sequelize.query("select * from programmes where programme!='admin'",{type:Sequelize.QueryTypes.SELECT})
+  .then(result=>{
+    console.log(result);
+    programmes = result;
+  })
+  .catch(err=>{
+    console.log(err);
+  });
+
+  res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,faculties:faculties,events:events,programmes:programmes});
 });
 
 router.post('/admin/addevent',async (req,res)=>{
-  
+  console.log(req.body);
+  await sequelize.query(`insert into events values('${req.body.event}','${req.body.from}','${req.body.to}')`,{type:Sequelize.QueryTypes.INSERT})
+  .then(()=>{
+    res.jsonp({success:'Event Added'});
+  })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).jsonp({error:err});
+  });
+});
+
+router.post('/admin/addprogramme',async (req,res)=>{
+  console.log(req.body);
+  await sequelize.query(`insert into programmes values('${req.body.prog}','${req.body.dept}','${req.body.year}','${req.body.progcode}')`,{type:Sequelize.QueryTypes.INSERT})
+  .then(()=>{
+    res.jsonp({success:'Programme Added'});
+  })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).jsonp({error:err});
+  });
 });
 
 module.exports = router;

@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    meta(name="viewport" content="width=device-width, initial-scale=1")
     link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js")
@@ -25,5 +26,6 @@ html
                 li(class="nav-item")
                   a(class="nav-link",href="/users/student/leaves") Duty Leaves
             li(class="nav-item")
-              a(class="nav-link",id="logout") Logout
+              a(class="nav-link",id="logout")
+                i(class="material-icons") power_settings_new
     block content

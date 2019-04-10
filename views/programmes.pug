@@ -1,0 +1,35 @@
+block programme
+  div(class="table-responsive")
+    table(class="table table-dark table-striped")
+      tr  
+        each val,index in programmes[0]
+          th= index.toUpperCase()
+        each val in programmes
+          tr
+            each prog in val
+              td= prog
+              
+  i(class="material-icons floating-btn",data-toggle="modal",data-target="#progModal") add
+  div(class="modal fade" id="progModal")
+    div(class="modal-dialog")
+      div(class="modal-content")
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") Add Programme
+          button(type="button" class="close" data-dismiss="modal") &times;
+        <!-- Modal body -->
+        div(class="modal-body")
+          div(class="reg-form")
+            form(action='../users/admin/addprogramme', method="POST", id="prog-form")
+              input(type="text",id="progname",placeholder="Enter Programme",class="lformelement")
+              br
+              input(type="text",id="deptname",placeholder="Enter Department",class="lformelement")
+              br
+              input(type="number",id="progyear",placeholder="Enter Year",class="lformelement")
+              br
+              input(type="text", id="progcode",placeholder="Enter Programme Code",class="lformelement")
+              br
+            input(type="submit",form="prog-form",id="add-prog",class="btn btn-cus",value="Add Programme")  
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close
