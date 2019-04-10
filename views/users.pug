@@ -1,0 +1,10 @@
+block users
+  div(class="table-responsive")
+    table(class="table table-dark table-striped")
+      tr  
+        each val,index in faculties[0]
+          th= index.toUpperCase()
+        each val in faculties
+          tr
+            each fac,idx in val
+              td= fac

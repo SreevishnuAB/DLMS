@@ -1,0 +1,43 @@
+block events
+  div(class="table-responsive")
+    table(class="table table-dark table-striped")
+      tr  
+        each val,index in events[0]
+          th= index.toUpperCase()
+        each val in events
+          tr
+            each ev in val
+              td= ev
+              
+  i(class="material-icons floating-btn",data-toggle="modal",data-target="#eventModal") add
+  div(class="modal" id="eventModal")
+    div(class="modal-dialog")
+      div(class="modal-content")
+        <!-- Modal Header -->
+        div(class="modal-header")
+          h4(class="modal-title") Add Event
+          button(type="button" class="close" data-dismiss="modal") &times;
+        <!-- Modal body -->
+        div(class="modal-body")
+          div(class="reg-form")
+            form(action='../users/admin/addevent', method="POST", id="event-form")
+              table
+                tr
+                  td
+                    label(for="evname") Event:
+                  td
+                    input(type="text",id="evname",class="lformelement",placeholder="Enter Event")
+                tr
+                  td
+                    label(for="evfrom") From:
+                  td
+                    input(type="date",id="evfrom",class="lformelement",placeholder="From Date")
+                tr
+                  td
+                    label(for="evto") To:
+                  td
+                    input(type="date",id="evto",class="lformelement")
+            input(type="submit",form="event-form",id="add-event",class="btn btn-cus",value="Add Event")  
+        <!-- Modal footer -->
+        div(class="modal-footer")
+          button(type="button" class="btn btn-danger" data-dismiss="modal") Close

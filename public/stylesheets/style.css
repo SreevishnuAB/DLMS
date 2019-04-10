@@ -95,9 +95,6 @@ nav{
   color:#ffffff;
   border: none;
 }
-table{
-  table-layout: fixed;
-}
 .table th{
   background-color: #d0e1f9;
   color: #233237;
@@ -164,7 +161,20 @@ a{
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
-.tab-container{
-  float:left;
+.tab-container,.tab-content{
   width:100%;
+}
+.floating-btn{
+  background-color: #14898d;
+  border-radius: 50%;
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+}
+#eve-form{
+  margin-top:5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

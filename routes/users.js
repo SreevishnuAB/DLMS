@@ -125,7 +125,7 @@ router.get('/admin',async (req,res)=>{
   /* Create admin layout */
   var events,faculties,programmes;
   var user = req.session.user;
-  await sequelize.query('select * from faculties',{type:Sequelize.QueryTypes.SELECT})
+  await sequelize.query("select id,email,programme,year from faculties where id!='admin'",{type:Sequelize.QueryTypes.SELECT})
     .then(result=>{
       console.log(result);
       faculties = result;
@@ -136,13 +136,17 @@ router.get('/admin',async (req,res)=>{
   await sequelize.query('select * from events',{type:Sequelize.QueryTypes.SELECT})
     .then(result=>{
       console.log(result);
-//TODO
+      events = result;
     })
     .catch(err=>{
       console.log(err);
     });
 
-  res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,faculties:faculties});
+  res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,faculties:faculties,events:events});
+});
+
+router.post('/admin/addevent',async (req,res)=>{
+  
 });
 
 module.exports = router;

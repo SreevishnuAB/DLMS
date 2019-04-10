@@ -90,7 +90,7 @@ $(document).ready(function(){
     $('.reg-form, .des-select').toggleClass('hidden');
   });
 
-  $('.modal').on('show.bs.modal',function(){
+  $('#myModal').on('show.bs.modal',function(){
     $('input[type="text"], input[type="password"], input[type="email"]').val('');
     $('.modal-title').html('Register');
     var cname = $('.reg-form').attr('class');
@@ -126,14 +126,18 @@ $(document).ready(function(){
           status: target.charAt(0),
           id: $(`#id${target.charAt(4)}`).text(),
           event: $(`#event${target.charAt(4)}`).text(),
-          },
+        },
         success:(success)=>{
           alert(success.success);
-          },
+        },
         error:(err)=>{
           alert(JSON.stringify(err));
-          }
-        });
-      }
+        }
+      });
+    }
+  });
+
+  $('#add-event').click(()=>{
+
   });
 });
