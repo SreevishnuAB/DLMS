@@ -30,7 +30,7 @@ router.get('/student', async function(req, res, next) {
     var dd = date.getDate(), mm = date.getMonth()+1;
     dd = (dd<10)?`0${dd}`:`${dd}`;
     mm = (mm<10)?`0${mm}`:`${mm}`;
-    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`,header:`DLMS - ${user.toUpperCase()}`,session:req.session,date:`${date.getFullYear()}-${mm}-${dd}`,event:events});
+    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`,header:`DLMS`,session:req.session,date:`${date.getFullYear()}-${mm}-${dd}`,event:events});
     console.log(req.session.user);
   }
 });

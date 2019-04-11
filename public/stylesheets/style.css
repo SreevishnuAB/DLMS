@@ -12,7 +12,7 @@ body {
 }
 h1 {
   font-family: 'Hind Siliguri',sans-serif;
-  font-weight: 700;
+  font-weight: 600;
 }
 nav{
   margin-top:3vh;
@@ -61,7 +61,6 @@ nav{
 .table{
   margin-top: 20px;
   overflow-x: scroll;
-  overflow-y: auto;
 }
 #logout{
   padding: 6px;
