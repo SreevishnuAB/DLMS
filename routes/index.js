@@ -38,7 +38,8 @@ router.get('/', async function(req, res) {
 
 router.post('/login',desSetter,async (req,res,next)=>{
   console.log(res.locals.designation);
-   await  sequelize.query(`select password from ${res.locals.designation} where id='${req.body.user}'`,{type: sequelize.QueryTypes.SELECT})
+  var user = req.body.user;
+   await  sequelize.query(`select password from ${res.locals.designation} where id='${user.toLowerCase()}'`,{type: sequelize.QueryTypes.SELECT})
     .then(users =>{
       bcrypt.compare(req.body.password,users[0].password,function(err,result){
         console.log(result);
