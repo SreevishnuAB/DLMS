@@ -37,7 +37,7 @@ nav{
   justify-content: center;
 }
 .formelement{
-  padding-left:5px;
+  padding-left:18px;
   padding-right: 5px;
   border-radius: 25px;
   margin-top:5px;
@@ -95,7 +95,7 @@ nav{
 }
 .lformelement{
   margin-top:5px;
-  padding-left:8px;
+  padding-left:18px;
   padding-right: 5px;
   border-radius: 25px;
   width:250px;
@@ -138,7 +138,7 @@ i{
   width:100%;
 }
 .hidden{
-  display: none;
+  display: none !important;
 }
 .modal-content, .modal-body{
   background-color:#233237;
