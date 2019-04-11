@@ -38,7 +38,7 @@ router.get('/student', async function(req, res, next) {
 
 router.post('/student',async (req,res)=>{
   console.log(req.body);
-  await sequelize.query(`insert into dutyleaves(id,year,semester,event,from_date,to_date,programme) values('${req.session.user}','${req.session.year}','${req.session.sem}','${req.body.event}','${req.body.from}','${req.body.to}','${req.session.prog}')`,{type:Sequelize.QueryTypes.INSERT})
+  await sequelize.query(`insert into dutyleaves(id,year,semester,event,from_date,to_date,programme,members) values('${req.session.user}','${req.session.year}','${req.session.sem}','${req.body.event}','${req.body.from}','${req.body.to}','${req.session.prog}','{${['1','2']}}')`,{type:Sequelize.QueryTypes.INSERT})
     .then(async (result)=>{
       console.log(result);
 //      res.json({success:true});
