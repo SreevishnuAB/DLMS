@@ -44,7 +44,7 @@ router.post('/login',desSetter,async (req,res,next)=>{
       bcrypt.compare(req.body.password,users[0].password,function(err,result){
         console.log(result);
         if(result==true){
-          req.session.user = req.body.user;
+          req.session.user = user;
           if(res.locals.designation == 'students'){
             req.session.prog = res.locals.prog;
             req.session.year = res.locals.year;
@@ -53,7 +53,7 @@ router.post('/login',desSetter,async (req,res,next)=>{
             console.log(req.session);
             res.redirect('../users/student');
           }
-          else if(req.body.user == 'admin')
+          else if(user == 'admin')
             res.redirect('../users/admin');
           else
             res.redirect('../users/faculty');
