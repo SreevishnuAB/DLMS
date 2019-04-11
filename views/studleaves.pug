@@ -1,24 +1,17 @@
 extends layout
 
 block content
-  div(class="table-responsive")
-    table(class="table table-dark table-striped")
-      tr  
-        - if (leaves!=0)
-            each val,index in leaves[0]
-              th= index.toUpperCase()
-            - for(var i = 0;i < leaves.length;i++)
-              tr
-                each val,index in leaves[i]
-                  - if(val == "Accepted"){
-                      td(class='i-container')
-                        i(class="material-icons icon icon-a clicked") done
-                  - }
-                  - else if(val == "Denied"){
-                      td(class='i-container')
-                        i(class="material-icons icon icon-d clicked") block
-                  - }
-                  - else
-                      td= val
-        - else
-            td No Duty Leave Requests
+  br
+  ul(class="nav nav-pills")
+    li(class="nav-item")
+      a(class="nav-link active" data-toggle="pill" href="#active") Active Leave Requests
+    li(class="nav-item")
+      a(class="nav-link" data-toggle="pill" href="#expired") Expired Leave Requests
+
+  div(class="tab-content")
+    div(class="tab-pane container active" id="active")
+      br
+      include activereqs.pug
+    div(class="tab-pane container fade" id="expired")
+      br
+      include expiredreqs.pug

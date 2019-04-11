@@ -1,0 +1,22 @@
+block active
+  div(class="table-responsive")
+    table(class="table table-dark table-striped")
+      tr  
+        - if (leaves!=0)
+            each val,index in leaves[0]
+              th= index.toUpperCase()
+            - for(var i = 0;i < leaves.length;i++)
+              tr
+                each val,index in leaves[i]
+                  - if(val == "Accepted"){
+                      td(class='i-container')
+                        i(class="material-icons icon icon-a clicked") done
+                  - }
+                  - else if(val == "Denied"){
+                      td(class='i-container')
+                        i(class="material-icons icon icon-d clicked") block
+                  - }
+                  - else
+                      td= val
+        - else
+            td No Duty Leave Requests

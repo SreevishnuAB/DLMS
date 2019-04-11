@@ -30,7 +30,8 @@ router.get('/student', async function(req, res, next) {
     var dd = date.getDate(), mm = date.getMonth()+1;
     dd = (dd<10)?`0${dd}`:`${dd}`;
     mm = (mm<10)?`0${mm}`:`${mm}`;
-    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`,header:`DLMS`,session:req.session,date:`${date.getFullYear()}-${mm}-${dd}`,event:events});
+    req.session.date = `${date.getFullYear()}-${mm}-${dd}`;
+    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`,header:`DLMS`,session:req.session,date:req.session.date,event:events});
     console.log(req.session.user);
   }
 });
@@ -79,11 +80,18 @@ router.post('/student',async (req,res)=>{
 
 router.get('/student/leaves',async (req,res)=>{
   var user = req.session.user;
-  await sequelize.query(`select * from dutyleaves where id='${req.session.user}'`,{type: sequelize.QueryTypes.SELECT})
+  var active,expired;
+  await sequelize.query(`select * from dutyleaves where id='${req.session.user}' and to_date>'${req.session.date}'`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
         console.log(leaves);
-      res.render('studleaves',{state:true,fac:false,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,header:`DLMS - ${user.toUpperCase()}`,leaves:leaves});
+        active = leaves;
     });
+  await sequelize.query(`select * from dutyleaves where id='${req.session.user}' and to_date<'${req.session.date}'`,{type: sequelize.QueryTypes.SELECT})
+    .then(leaves=>{
+        console.log(leaves);
+        expired = leaves;
+    });
+    res.render('studleaves',{state:true,fac:false,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,header:`DLMS - ${user.toUpperCase()}`,leaves:active,expired:expired});
 });
 
 router.get('/faculty',async (req,res)=>{
