@@ -30,7 +30,7 @@ router.get('/student', async function(req, res, next) {
     var dd = date.getDate(), mm = date.getMonth()+1;
     dd = (dd<10)?`0${dd}`:`${dd}`;
     mm = (mm<10)?`0${mm}`:`${mm}`;
-    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`,session:req.session,date:`${date.getFullYear()}-${mm}-${dd}`,event:events});
+    res.render('student',{state:true,fac:false,title:`${user.toUpperCase()} - DLMS`,header:`DLMS - ${user.toUpperCase()}`,session:req.session,date:`${date.getFullYear()}-${mm}-${dd}`,event:events});
     console.log(req.session.user);
   }
 });
@@ -82,7 +82,7 @@ router.get('/student/leaves',async (req,res)=>{
   await sequelize.query(`select * from dutyleaves where id='${req.session.user}'`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
         console.log(leaves);
-      res.render('studleaves',{state:true,fac:false,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
+      res.render('studleaves',{state:true,fac:false,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,header:`DLMS - ${user.toUpperCase()}`,leaves:leaves});
     });
 });
 
@@ -95,7 +95,7 @@ router.get('/faculty',async (req,res)=>{
     await sequelize.query(`select * from dutyleaves where programme=(select programme from faculties where id='${req.session.user}')`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
         console.log(leaves);
-        res.render('faculty',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,leaves:leaves});
+        res.render('faculty',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,header:`DLMS - ${user.toUpperCase()}`,leaves:leaves});
       })
     .catch(err=>{
         res.send(`Sorry, something went wrong: ${err}`);
@@ -152,7 +152,7 @@ router.get('/admin',async (req,res)=>{
     console.log(err);
   });
 
-  res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,faculties:faculties,events:events,programmes:programmes});
+  res.render('admin',{state:true,fac:true,title:`${user.toUpperCase()} - Duty Leaves - DLMS`,header:`DLMS - ${user.toUpperCase()}`,faculties:faculties,events:events,programmes:programmes});
 });
 
 router.post('/admin/addevent',async (req,res)=>{

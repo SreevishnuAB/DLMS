@@ -32,7 +32,7 @@ router.get('/', async function(req, res) {
   await sequelize.query("select programme,year from programmes where programme!='admin' order by programme,year asc",{type: sequelize.QueryTypes.SELECT})
     .then(prog =>{
       console.log(prog);
-      res.render('index',{state:false,fac:false,title: 'DLMS',prog:prog})
+      res.render('index',{state:false,fac:false,title: 'DLMS',header:'DLMS',prog:prog})
     });
 });
 
