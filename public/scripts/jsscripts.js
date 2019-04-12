@@ -65,7 +65,10 @@ $(document).ready(function(){
       cache:false,
       async:true,
       data:{
-        event: $('#event').val(),
+        event: ()=>{
+          var eventwdate = $('#event').val();
+          return eventwdate.substring(0,eventwdate.length-11);
+        },
         from: $('#from').val(),
         to: $('#to').val(),
         },
@@ -176,5 +179,12 @@ $(document).ready(function(){
         alert(err.responseJSON.error.parent.detail);
       }
     });
+  });
+
+  $('#lreq #event').on('change',()=>{
+    var to = $('#lreq #event').val();
+    to = to.substring(to.length-10);
+//    alert(to);
+    $('#lreq #to').val(to);
   });
 });

@@ -1,29 +1,30 @@
 extends layout
 
 block content
-  div(class="leaveform container")
+  div(class="container table-responsive")
+    table(class="table table-dark table-striped")
+      tr
+        th ID
+        th Programme
+        th Year of Joining
+        th Semester
+      tr
+        td= session.user
+        td= session.prog
+        td= session.year
+        td= session.sem
+
+  div(class="form")
     form(action="",id="lreq",name="leave")
       table
         tr
           td
-            label(for="id") ID:
+            label(for="event") Event:
           td
-            input(type="text",id="id",value=`${session.user}`,class="lformelement",readonly)
-        tr
-          td
-            label(for="prog") Programme:
-          td
-            input(type="text",value=`${session.prog}`,id="prog",class="lformelement",readonly)
-        tr
-          td
-            label(for="year") Year of Joining:
-          td
-            input(type="text",value=`${session.year}`,id="yoj",class="lformelement",readonly)
-        tr
-          td
-            label(for="sem") Semester:
-          td
-            input(type="text",value=`${session.sem}`,id="sem",class="lformelement",readonly)
+            select(id="event",class="lformelement")
+              option(value="",disabled,selected) Select Event
+                each val in event
+                  option(value=`${val.event} ${val.to_date}`)= `${val.event}`
         tr
           td
             label(for="from") From:
@@ -33,13 +34,8 @@ block content
           td
             label(for="to") To:
           td
-            input(type="date",min=date,id="to",class="lformelement",required)
+            input(type="date",min=date,id="to",class="lformelement",required,readonly)
         tr
           td
-            label(for="event") Event:
-          td
-            select(id="event",class="lformelement")
-              option(value="",disabled,selected) Select Event
-              each val in event
-                option(value=`${val.event}`)= `${val.event}`
+            
     input(type="submit",form="leave",id="req",class="btn btn-cus")

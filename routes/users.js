@@ -13,7 +13,7 @@ var sequelize = new Sequelize('postgres://qrlwmsdtnnltzr:72fd6b12362abaca65b66c6
 router.get('/student', async function(req, res, next) {
 //  res.send('respond with a resource');
   var events;
-  await sequelize.query('select event from events',{type:Sequelize.QueryTypes.SELECT})
+  await sequelize.query('select event,to_date from events',{type:Sequelize.QueryTypes.SELECT})
     .then(result=>{
       console.log(result);
       events = result;
