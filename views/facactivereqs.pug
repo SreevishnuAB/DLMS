@@ -1,0 +1,29 @@
+block facactive
+  div(class="table-responsive")
+    table(class="table table-dark table-hover table-striped faculty")
+      tr  
+        - if (leaves!=0)
+            each val,index in leaves[0]
+              th= index.toUpperCase()
+            - for(var i = 0;i < leaves.length;i++)
+              tr
+                each val,index in leaves[i]
+                  - if(val == "Under Consideration"){
+                      td(id=`${index}${i}` class="i-container")
+                        i(id=`abtn${i}`, class="material-icons icon icon-a") done
+                        i(id=`dbtn${i}`, class="material-icons icon icon-d") block
+                  - }
+                  - else if(val == "Accepted"){
+                      td(id=`${index}${i}`,class='i-container')
+                        i(id=`abtn${i}`, class="material-icons icon icon-a clicked") done
+                        i(id=`dbtn${i}`, class="material-icons icon icon-d hidden") block
+                  - }
+                  - else if(val == "Denied"){
+                      td(id=`${index}${i}`,class='i-container')
+                        i(id=`abtn${i}`, class="material-icons icon icon-a hidden") done
+                        i(id=`dbtn${i}`, class="material-icons icon icon-d clicked") block
+                  - }
+                  - else
+                      td(id=`${index}${i}`)= val
+        - else
+            td No Active Duty Leave Requests

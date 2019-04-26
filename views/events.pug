@@ -26,17 +26,17 @@ block events
                   td
                     label(for="evname") Event:
                   td
-                    input(type="text",id="evname",class="lformelement",placeholder="Enter Event")
+                    input(type="text",id="evname",class="lformelement",placeholder="Enter Event",required)
                 tr
                   td
                     label(for="evfrom") From:
                   td
-                    input(type="date",id="evfrom",class="lformelement")
+                    input(type="date",id="evfrom",class="lformelement",min=date,value=date,required)
                 tr
                   td
                     label(for="evto") To:
                   td
-                    input(type="date",id="evto",class="lformelement")
+                    input(type="date",id="evto",class="lformelement",min=date,required)
             input(type="submit",form="event-form",id="add-event",class="btn btn-cus",value="Add Event")  
         <!-- Modal footer -->
         div(class="modal-footer")

@@ -141,44 +141,52 @@ $(document).ready(function(){
   });
 
   $('#add-event').click(()=>{
-    $.ajax({
-      type:'POST',
-      url:'../users/admin/addevent',
-      cache:false,
-      async:true,
-      data:{
-        event:$('#evname').val(),
-        from:$('#evfrom').val(),
-        to:$('#evto').val(),
-      },
-      success:(success)=>{
-        alert(success.success);
-      },
-      error:(err)=>{
-        alert(err.responseJSON.error.parent.detail);
-      }
-    });
+    if($('#evname').val() == '' || $('#evfrom').val() == '' || $('#evto').val() == '')
+      alert("All fields must be filled");
+    else{
+      $.ajax({
+        type:'POST',
+        url:'../users/admin/addevent',
+        cache:false,
+        async:true,
+        data:{
+          event:$('#evname').val(),
+          from:$('#evfrom').val(),
+          to:$('#evto').val(),
+        },
+        success:(success)=>{
+          alert(success.success);
+        },
+        error:(err)=>{
+          alert(err.responseJSON.error.parent.detail);
+        }
+      });
+    }
   });
 
   $('#add-prog').click(()=>{
-    $.ajax({
-      type:'POST',
-      url:'../users/admin/addprogramme',
-      cache:false,
-      async:true,
-      data:{
-        prog:$('#progname').val(),
-        dept:$('#deptname').val(),
-        year:$('#progyear').val(),
-        progcode:$('#progcode').val(),
-      },
-      success:(success)=>{
-        alert(success.success);
-      },
-      error:(err)=>{
-        alert(err.responseJSON.error.parent.detail);
-      }
-    });
+    if($('#progname').val() == '' || $('#deptname').val() == '' || $('#progyear').val() == '' || $('#progcode').val() == '')
+      alert("All fields must be filled");
+    else{
+      $.ajax({
+        type:'POST',
+        url:'../users/admin/addprogramme',
+        cache:false,
+        async:true,
+        data:{
+          prog:$('#progname').val(),
+          dept:$('#deptname').val(),
+          year:$('#progyear').val(),
+          progcode:$('#progcode').val(),
+        },
+        success:(success)=>{
+          alert(success.success);
+        },
+        error:(err)=>{
+          alert(err.responseJSON.error.parent.detail);
+        }
+      });
+    }
   });
 
   $('#lreq #event').on('change',()=>{

@@ -21,13 +21,13 @@ block programme
         div(class="modal-body")
           div(class="reg-form")
             form(action='../users/admin/addprogramme', method="POST", id="prog-form")
-              input(type="text",id="progname",placeholder="Enter Programme",class="lformelement")
+              input(type="text",id="progname",placeholder="Enter Programme",class="lformelement",required)
               br
-              input(type="text",id="deptname",placeholder="Enter Department",class="lformelement")
+              input(type="text",id="deptname",placeholder="Enter Department",class="lformelement",required)
               br
-              input(type="number",id="progyear",placeholder="Enter Year",class="lformelement")
+              input(type="number",id="progyear",placeholder="Enter Year",class="lformelement",required)
               br
-              input(type="text", id="progcode",placeholder="Enter Programme Code",class="lformelement")
+              input(type="text", id="progcode",placeholder="Enter Programme Code",class="lformelement",required)
               br
             input(type="submit",form="prog-form",id="add-prog",class="btn btn-cus",value="Add Programme")  
         <!-- Modal footer -->
