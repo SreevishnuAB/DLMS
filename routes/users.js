@@ -34,7 +34,7 @@ router.get('/student', async function(req, res, next) {
 
 router.post('/student',async (req,res)=>{
   console.log(req.body);
-  await sequelize.query(`insert into dutyleaves(id,year,semester,event,from_date,to_date,programme,members) values('${req.session.user}','${req.session.year}','${req.session.sem}','${req.body.event}','${req.body.from}','${req.body.to}','${req.session.prog}','{${['1','2']}}')`,{type:Sequelize.QueryTypes.INSERT})
+  await sequelize.query(`insert into dutyleaves(id,year,semester,event,from_date,to_date,programme) values('${req.session.user}','${req.session.year}','${req.session.sem}','${req.body.event}','${req.body.from}','${req.body.to}','${req.session.prog}')`,{type:Sequelize.QueryTypes.INSERT})
     .then(async (result)=>{
       console.log(result);
 //      res.json({success:true});
@@ -77,7 +77,7 @@ router.post('/student',async (req,res)=>{
 router.get('/student/leaves',async (req,res)=>{
   var user = req.session.user;
   var active,expired;
-  await sequelize.query(`select * from dutyleaves where id='${req.session.user}' and to_date>'${req.session.date}'`,{type: sequelize.QueryTypes.SELECT})
+  await sequelize.query(`select * from dutyleaves where id='${req.session.user}' and to_date>='${req.session.date}'`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
         console.log(leaves);
         active = leaves;
@@ -97,7 +97,7 @@ router.get('/faculty',async (req,res)=>{
   else{
     var user = req.session.user;
     var active,exp;
-    await sequelize.query(`select * from dutyleaves where programme=(select programme from faculties where id='${req.session.user}') and to_date>'${req.session.date}'`,{type: sequelize.QueryTypes.SELECT})
+    await sequelize.query(`select * from dutyleaves where programme=(select programme from faculties where id='${req.session.user}') and to_date>='${req.session.date}'`,{type: sequelize.QueryTypes.SELECT})
     .then(leaves=>{
         console.log(leaves);
         active = leaves;
